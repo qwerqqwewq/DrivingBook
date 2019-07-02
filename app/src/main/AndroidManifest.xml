@@ -11,20 +11,15 @@
         android:theme="@style/AppTheme">
         <activity
             android:name=".MainActivity"
-            android:theme="@style/AppTheme.fullscreen">
-
-        </activity>
-        <activity
-            android:name=".LoginActivity"
-            android:theme="@style/AppTheme.fullscreen" />
-        <activity android:name=".RegistActivity" />
-        <activity android:name=".FirstActivity">
+            android:theme="@style/AppTheme.fullscreen"></activity>
+        <activity android:name=".LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".RegistActivity" />
     </application>
 
 </manifest>
