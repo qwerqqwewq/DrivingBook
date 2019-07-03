@@ -14,14 +14,12 @@
         android:background="#FFFFFFFF"
         android:orientation="vertical">
 
-    <FrameLayout
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
-        android:layout_weight="1">
+
         <FrameLayout
             android:id="@android:id/tabcontent"
             android:layout_width="match_parent"
-            android:layout_height="fill_parent">
+            android:layout_height="fill_parent"
+            android:layout_weight="1">
             <fragment
                 android:layout_width="fill_parent"
                 android:layout_height="fill_parent"
@@ -32,46 +30,46 @@
                 android:layout_width="fill_parent"
                 android:layout_height="fill_parent"
                 android:id="@+id/fragment_mycenter"
-                android:name="com.example.pj19980729.drivingbook.MyFragment"
+                android:name="com.example.pj19980729.drivingbook.MycenterFragment"
                 />
         </FrameLayout>
-    </FrameLayout>
-
-    <TabWidget
-        android:id="@android:id/tabs"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_weight="0.0"
-        android:visibility="gone"
-        ></TabWidget>
-
-    <LinearLayout
-        android:layout_width="fill_parent"
-        android:layout_height="3dp">
-    </LinearLayout>
 
 
-    <RadioGroup
-        android:id="@+id/radioGroup2"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        <TabWidget
+            android:id="@android:id/tabs"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.0"
+            android:visibility="gone"
+            ></TabWidget>
 
-        <RadioButton
-            android:id="@+id/radio_main"
-            style="@style/radiobutton"
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="3dp">
+        </LinearLayout>
+
+
+        <RadioGroup
+            android:id="@+id/radioGroup2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="驾考" />
+            android:orientation="horizontal">
 
-        <RadioButton
-            android:id="@+id/radio_mycenter"
-            style="@style/radiobutton"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="我的" />
-    </RadioGroup>
+            <RadioButton
+                android:id="@+id/radio_main"
+                style="@style/radiobutton"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="驾考" />
+
+            <RadioButton
+                android:id="@+id/radio_mycenter"
+                style="@style/radiobutton"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="我的" />
+        </RadioGroup>
     </LinearLayout>
 </TabHost>

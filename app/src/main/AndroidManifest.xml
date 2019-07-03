@@ -11,7 +11,7 @@
         android:theme="@style/AppTheme">
         <activity
             android:name=".MainActivity"
-            android:theme="@style/AppTheme.fullscreen"></activity>
+            android:theme="@style/AppTheme.fullscreen" />
         <activity android:name=".LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -20,6 +20,11 @@
             </intent-filter>
         </activity>
         <activity android:name=".RegistActivity" />
+        <activity android:name=".FirstActivity" />
+        <activity android:name=".SecondActivity" />
+        <activity android:name=".ThirdActivity" />
+        <activity android:name=".ForthActivity" />
+        <activity android:name=".TestActivity"></activity>
     </application>
 
 </manifest>
