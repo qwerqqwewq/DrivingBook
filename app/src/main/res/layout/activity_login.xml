@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".LoginActivity">
+    tools:context=".LoginActivity"
+    android:background="@drawable/backg1">
 
     <TextView
         android:id="@+id/textView"
@@ -71,6 +72,7 @@
         android:layout_marginBottom="91dp"
         android:layout_toStartOf="@+id/textView"
         android:onClick="getAsyn"
+        android:background="@drawable/buttonbackp"
         android:text="登录" />
 
     <Button
@@ -79,6 +81,7 @@
         android:layout_height="wrap_content"
         android:layout_alignTop="@+id/button"
         android:layout_toEndOf="@+id/textView"
+        android:background="@drawable/buttonbackp"
         android:text="退出" />
 
     <TextView
@@ -112,6 +115,7 @@
         android:layout_alignStart="@+id/editText4"
         android:layout_marginStart="0dp"
         android:layout_marginTop="28dp"
+        android:background="@drawable/backg2"
         android:text="2333"
         android:textSize="20dp" />
 
@@ -124,5 +128,5 @@
         android:layout_marginBottom="202dp"
         android:text="没有用户名？点此注册"
         android:textSize="15dp"
-        android:textColor="@android:color/holo_blue_light"/>
+        android:textColor="@android:color/holo_red_dark"/>
 </RelativeLayout>

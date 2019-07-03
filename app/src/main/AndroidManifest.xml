@@ -24,7 +24,10 @@
         <activity android:name=".SecondActivity" />
         <activity android:name=".ThirdActivity" />
         <activity android:name=".ForthActivity" />
-        <activity android:name=".TestActivity"></activity>
+        <activity android:name=".TestActivity" />
+        <activity android:name=".ExamActivity" />
+        <activity android:name=".WrongActivity" />
+
     </application>
 
 </manifest>

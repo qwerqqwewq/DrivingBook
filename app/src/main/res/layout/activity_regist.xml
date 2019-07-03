@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/registback"
     tools:context=".RegistActivity">
 
     <TextView
@@ -59,17 +60,6 @@
         android:text="确认密码"
         android:textSize="20dp" />
 
-    <TextView
-        android:id="@+id/textView11"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/textView10"
-        android:layout_alignStart="@+id/textView7"
-        android:layout_marginStart="0dp"
-        android:layout_marginTop="60dp"
-        android:text="性别"
-        android:textSize="20dp" />
-
     <EditText
         android:id="@+id/editText"
         android:layout_width="wrap_content"
@@ -110,29 +100,6 @@
         android:textSize="20dp" />
 
 
-    <RadioGroup
-        android:id="@+id/radioGroup"
-        android:layout_width="222dp"
-        android:layout_height="37dp"
-        android:layout_alignStart="@+id/editText"
-        android:orientation="horizontal"
-        android:layout_alignBottom="@+id/textView11" >
-
-        <RadioButton
-            android:id="@+id/radioButton1"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:text="男" />
-
-        <RadioButton
-            android:id="@+id/radioButton2"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:text="女" />
-    </RadioGroup>
-
     <Button
         android:id="@+id/button"
         android:layout_width="wrap_content"
@@ -141,6 +108,7 @@
         android:layout_marginStart="-1dp"
         android:layout_marginBottom="57dp"
         android:layout_toEndOf="@+id/textView7"
+        android:background="@drawable/backg2"
         android:text="确认" />
 
     <Button
@@ -150,5 +118,6 @@
         android:layout_alignBottom="@+id/button"
         android:layout_alignParentEnd="true"
         android:layout_marginEnd="68dp"
+        android:background="@drawable/backg2"
         android:text="返回" />
 </RelativeLayout>
