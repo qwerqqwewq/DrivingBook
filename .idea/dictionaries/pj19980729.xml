@@ -4,16 +4,26 @@
       <w>asyn</w>
       <w>backg</w>
       <w>buttonbackp</w>
+      <w>commentcontent</w>
       <w>drivingbook</w>
+      <w>fname</w>
+      <w>mdiatype</w>
       <w>mycenter</w>
+      <w>okhttpdo</w>
       <w>regist</w>
       <w>registback</w>
+      <w>replycomment</w>
+      <w>replyname</w>
+      <w>selectall</w>
       <w>sexgroup</w>
       <w>sexman</w>
       <w>sexwoman</w>
+      <w>testvp</w>
       <w>textviewtype</w>
+      <w>ucomment</w>
       <w>uname</w>
       <w>upwd</w>
+      <w>usercomment</w>
     </words>
   </dictionary>
 </component>

@@ -8,19 +8,19 @@ import android.widget.Button;
 
 public class ForthActivity extends AppCompatActivity {
 
-    Button test,exam,wrong;
+    Button test2,exam2,wrong2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_forth);
 
-        test=findViewById(R.id.button7);
-        exam=findViewById(R.id.button8);
-        wrong=findViewById(R.id.button9);
+        test2=findViewById(R.id.button7);
+        exam2=findViewById(R.id.button8);
+        wrong2=findViewById(R.id.button9);
 
 
-        test.setOnClickListener(new View.OnClickListener() {
+        test2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent();
@@ -29,7 +29,7 @@ public class ForthActivity extends AppCompatActivity {
             }
         });
 
-        exam.setOnClickListener(new View.OnClickListener() {
+        exam2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent();
@@ -38,7 +38,7 @@ public class ForthActivity extends AppCompatActivity {
             }
         });
 
-        wrong.setOnClickListener(new View.OnClickListener() {
+        wrong2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent();

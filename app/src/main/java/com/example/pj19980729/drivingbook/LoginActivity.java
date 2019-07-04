@@ -34,6 +34,9 @@ public class LoginActivity extends AppCompatActivity {
     TextView regist;
     String res;
 
+    private String url="";
+    private OkHttpClient okHttpClient;
+
 
 
     @Override
