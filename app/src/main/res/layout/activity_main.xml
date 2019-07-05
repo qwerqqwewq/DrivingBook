@@ -24,13 +24,13 @@
                 android:layout_width="fill_parent"
                 android:layout_height="fill_parent"
                 android:id="@+id/fragment_Main"
-                android:name="com.example.pj19980729.drivingbook.MainFragment"
+                android:name="com.example.pj19980729.drivingbook.fragment.MainFragment"
                 />
             <fragment
                 android:layout_width="fill_parent"
                 android:layout_height="fill_parent"
                 android:id="@+id/fragment_mycenter"
-                android:name="com.example.pj19980729.drivingbook.MycenterFragment"
+                android:name="com.example.pj19980729.drivingbook.fragment.MycenterFragment"
                 />
         </FrameLayout>
 

@@ -1,15 +1,16 @@
-package com.example.pj19980729.drivingbook;
+package com.example.pj19980729.drivingbook.sign;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.example.pj19980729.drivingbook.MainActivity;
+import com.example.pj19980729.drivingbook.R;
 
 import org.jetbrains.annotations.NotNull;
 

@@ -9,10 +9,16 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.Window;
 import android.widget.Button;
+import android.widget.ListView;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TabHost;
+import android.widget.TextView;
+import android.widget.VideoView;
 
+import com.example.pj19980729.drivingbook.test.ExamActivity;
+import com.example.pj19980729.drivingbook.test.TestActivity;
+import com.example.pj19980729.drivingbook.test.WrongActivity;
 import com.example.pj19980729.drivingbook.utils.MyAdapter;
 
 import java.util.ArrayList;
@@ -33,6 +39,11 @@ public class MainActivity extends AppCompatActivity{
 
     //FirstActivity
     Button test1, exam1, wrong1;
+
+    //SecondActivity
+    ListView lv1;
+    VideoView vv1,vv2;
+    TextView tv1,tv2;
 
     //ForthActivity
     Button test4, exam4, wrong4;
@@ -201,6 +212,11 @@ public class MainActivity extends AppCompatActivity{
         });
 
         //SecondActivity的按钮事件监听
+        lv1 = v2.findViewById(R.id.lv1);
+        vv1 = v2.findViewById(R.id.videoView);
+        vv2 = v2.findViewById(R.id.videoView2);
+        tv1 = v2.findViewById(R.id.textView23);
+        tv2 = v2.findViewById(R.id.textView24);
 
 
 

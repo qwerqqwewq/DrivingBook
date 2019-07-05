@@ -1,4 +1,4 @@
-package com.example.pj19980729.drivingbook;
+package com.example.pj19980729.drivingbook.fragment;
 
 import android.content.Context;
 import android.net.Uri;
@@ -13,6 +13,8 @@ import android.view.ViewGroup;
 import android.view.Window;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+
+import com.example.pj19980729.drivingbook.R;
 
 import java.util.ArrayList;
 

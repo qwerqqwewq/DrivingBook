@@ -1,10 +1,12 @@
-package com.example.pj19980729.drivingbook;
+package com.example.pj19980729.drivingbook.emptyactivity;
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+
+import com.example.pj19980729.drivingbook.R;
 
 public class FirstActivity extends AppCompatActivity {
 

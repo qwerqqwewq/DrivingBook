@@ -1,7 +1,9 @@
-package com.example.pj19980729.drivingbook;
+package com.example.pj19980729.drivingbook.emptyactivity;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+
+import com.example.pj19980729.drivingbook.R;
 
 public class SecondActivity extends AppCompatActivity {
 

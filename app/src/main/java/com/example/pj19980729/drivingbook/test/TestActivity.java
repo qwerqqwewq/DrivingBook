@@ -1,4 +1,4 @@
-package com.example.pj19980729.drivingbook;
+package com.example.pj19980729.drivingbook.test;
 
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
@@ -6,17 +6,20 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.webkit.WebView;
+import android.widget.AdapterView;
+import android.widget.ListView;
 import android.widget.TextView;
+
+import com.example.pj19980729.drivingbook.R;
 
 import java.util.ArrayList;
 
 public class TestActivity extends AppCompatActivity {
 
     ViewPager testvp;
-    WebView question;
-    WebView answerA,answerB,answerC,answerD,answer;
     TextView username,usercomment,replyname,replycomment,selectall;
     ArrayList<View> vpList;
+    ListView comment,question;
 
 
 
@@ -31,12 +34,9 @@ public class TestActivity extends AppCompatActivity {
         testvp=findViewById(R.id.testvp);
 
         //testLayout
-        question = (WebView) findViewById(R.id.question);
-        answerA = (WebView) findViewById(R.id.answerA);
-        answerB = (WebView) findViewById(R.id.answerB);
-        answerC = (WebView) findViewById(R.id.answerC);
-        answerD = (WebView) findViewById(R.id.answerD);
-        answer = (WebView) findViewById(R.id.answer);
+        comment = findViewById(R.id.comment);
+        question = findViewById(R.id.question);
+
 
         //commentLayout
         username = (TextView) findViewById(R.id.textView11);
@@ -53,6 +53,12 @@ public class TestActivity extends AppCompatActivity {
             View v=inflater.inflate(R.layout.testlayout,null);
             vpList.add(v);
         }
+
+
+
+
+
+
 
     }
 }

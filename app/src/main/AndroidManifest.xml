@@ -14,21 +14,21 @@
         <activity
             android:name=".MainActivity"
             android:theme="@style/AppTheme.fullscreen" />
-        <activity android:name=".LoginActivity">
+        <activity android:name=".sign.LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".RegistActivity" />
-        <activity android:name=".FirstActivity" />
-        <activity android:name=".SecondActivity" />
-        <activity android:name=".ThirdActivity" />
-        <activity android:name=".ForthActivity" />
-        <activity android:name=".TestActivity" />
-        <activity android:name=".ExamActivity" />
-        <activity android:name=".WrongActivity" />
+        <activity android:name=".sign.RegistActivity" />
+        <activity android:name=".emptyactivity.FirstActivity" />
+        <activity android:name=".emptyactivity.SecondActivity" />
+        <activity android:name=".emptyactivity.ThirdActivity" />
+        <activity android:name=".emptyactivity.ForthActivity" />
+        <activity android:name=".test.TestActivity" />
+        <activity android:name=".test.ExamActivity" />
+        <activity android:name=".test.WrongActivity" />
 
     </application>
 

@@ -1,4 +1,4 @@
-package com.example.pj19980729.drivingbook;
+package com.example.pj19980729.drivingbook.fragment;
 
 import android.content.Context;
 import android.net.Uri;
@@ -8,6 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.example.pj19980729.drivingbook.R;
 
 
 public class MycenterFragment extends Fragment {
