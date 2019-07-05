@@ -7,6 +7,7 @@
       <w>commentcontent</w>
       <w>datas</w>
       <w>drivingbook</w>
+      <w>examvp</w>
       <w>fname</w>
       <w>mdiatype</w>
       <w>mycenter</w>
@@ -27,6 +28,7 @@
       <w>uname</w>
       <w>upwd</w>
       <w>usercomment</w>
+      <w>wrongvp</w>
     </words>
   </dictionary>
 </component>

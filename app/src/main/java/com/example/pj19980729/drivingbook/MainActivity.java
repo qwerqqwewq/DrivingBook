@@ -9,6 +9,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.Window;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
@@ -19,11 +20,15 @@ import android.widget.VideoView;
 import com.example.pj19980729.drivingbook.test.ExamActivity;
 import com.example.pj19980729.drivingbook.test.TestActivity;
 import com.example.pj19980729.drivingbook.test.WrongActivity;
+import com.example.pj19980729.drivingbook.utils.ListViewAdapter;
 import com.example.pj19980729.drivingbook.utils.MyAdapter;
 
 import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity{
+
+    //全局变量
+    int flag=0;//获取radiobutton的位置，从而判断页面位置
 
     //MainActivity
     TabHost tabHost;
@@ -42,7 +47,7 @@ public class MainActivity extends AppCompatActivity{
 
     //SecondActivity
     ListView lv1;
-    VideoView vv1,vv2;
+    ImageView image1,image2;
     TextView tv1,tv2;
 
     //ForthActivity
@@ -142,15 +147,19 @@ public class MainActivity extends AppCompatActivity{
                 switch (i) {
                     case 0:
                         radioButton.setChecked(true);
+                        flag=1;
                         break;
                     case 1:
                         radioButton3.setChecked(true);
+                        flag=2;
                         break;
                     case 2:
                         radioButton4.setChecked(true);
+                        flag=3;
                         break;
                     case 3:
                         radioButton5.setChecked(true);
+                        flag=4;
                         break;
                 }
             }
@@ -212,11 +221,20 @@ public class MainActivity extends AppCompatActivity{
         });
 
         //SecondActivity的按钮事件监听
-        lv1 = v2.findViewById(R.id.lv1);
-        vv1 = v2.findViewById(R.id.videoView);
-        vv2 = v2.findViewById(R.id.videoView2);
-        tv1 = v2.findViewById(R.id.textView23);
-        tv2 = v2.findViewById(R.id.textView24);
+        if (flag==2) {
+            lv1 = v2.findViewById(R.id.lv1);
+            tv1 = findViewById(R.id.textView23);
+            tv2 = findViewById(R.id.textView24);
+            image1 = findViewById(R.id.imageView3);
+            image2 = findViewById(R.id.imageView4);
+            ArrayList<String> list = new ArrayList<String>();
+            for (int i = 0; i < 21; i++) {
+                list.add("测试:" + i);
+            }
+            ListViewAdapter adapter = new ListViewAdapter(this, R.layout.studyview, list);
+            lv1.setAdapter(adapter);
+        }
+
 
 
 

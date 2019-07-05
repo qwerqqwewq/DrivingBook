@@ -2,7 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.pj19980729.drivingbook">
 
-    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.INTERNET" />
 
     <application
         android:allowBackup="true"
@@ -29,7 +29,7 @@
         <activity android:name=".test.TestActivity" />
         <activity android:name=".test.ExamActivity" />
         <activity android:name=".test.WrongActivity" />
-
+        <activity android:name=".ViewPlayerActivity"></activity>
     </application>
 
 </manifest>
