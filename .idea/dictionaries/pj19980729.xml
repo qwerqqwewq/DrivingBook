@@ -2,6 +2,7 @@
   <dictionary name="pj19980729">
     <words>
       <w>asyn</w>
+      <w>asyresponse</w>
       <w>backg</w>
       <w>buttonbackp</w>
       <w>commentcontent</w>
@@ -9,12 +10,16 @@
       <w>drivingbook</w>
       <w>examvp</w>
       <w>fname</w>
+      <w>getneric</w>
       <w>mdiatype</w>
       <w>mycenter</w>
       <w>okhttpdo</w>
       <w>posi</w>
       <w>regist</w>
       <w>registback</w>
+      <w>registname</w>
+      <w>registpassword</w>
+      <w>repeatpwd</w>
       <w>replycomment</w>
       <w>replyname</w>
       <w>selectall</w>

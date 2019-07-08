@@ -1,9 +1,12 @@
-package com.example.pj19980729.drivingbook.utils;
+package com.example.pj19980729.drivingbook.okhttp;
 
 import android.content.Context;
 import android.os.Build;
 import android.os.Handler;
 import android.util.Log;
+
+import com.example.pj19980729.drivingbook.constant.Constants;
+import com.example.pj19980729.drivingbook.utils.Values;
 
 import java.io.IOException;
 import java.net.URLEncoder;
@@ -25,7 +28,7 @@ public class RequestManager {
     private static final MediaType MEDIA_TYPE_JSON = MediaType.parse("application/x-www-form-urlencoded; charset=utf-8");//mdiatype 这个需要和服务端保持一致
     private static final MediaType MEDIA_TYPE_MARKDOWN = MediaType.parse("text/x-markdown; charset=utf-8");//mdiatype 这个需要和服务端保持一致
     private static final String TAG = RequestManager.class.getSimpleName();
-    private static final String BASE_URL = "http://10.13.31.196";//请求接口根地址
+    private static final String BASE_URL = Constants.context;//请求接口根地址
     private static volatile RequestManager mInstance;//单利引用
     public static final int TYPE_GET = 0;//get请求
     public static final int TYPE_POST_JSON = 1;//post请求参数为json
@@ -112,7 +115,6 @@ public class RequestManager {
             final Call call = mOkHttpClient.newCall(request);
             //执行请求
             final Response response = call.execute();
-            response.body().string();
         } catch (Exception e) {
             Log.e(TAG, e.toString());
         }
