@@ -35,6 +35,7 @@ public class RequestManager {
     public static final int TYPE_POST_FORM = 2;//post请求参数为表单
     private OkHttpClient mOkHttpClient;//okHttpClient 实例
     private Handler okHttpHandler;//全局处理子线程和M主线程通信
+    public String getresponse;
 
     /**
      * 初始化RequestManager
@@ -115,6 +116,7 @@ public class RequestManager {
             final Call call = mOkHttpClient.newCall(request);
             //执行请求
             final Response response = call.execute();
+            getresponse = response.body().string();
         } catch (Exception e) {
             Log.e(TAG, e.toString());
         }
@@ -155,7 +157,7 @@ public class RequestManager {
             //请求执行成功
             if (response.isSuccessful()) {
                 //获取返回数据 可以是String，bytes ,byteStream
-                Log.e(TAG, "response ----->" + response.body().string());
+                getresponse = response.body().string();
             }
         } catch (Exception e) {
             Log.e(TAG, e.toString());
@@ -187,7 +189,7 @@ public class RequestManager {
             //执行请求
             Response response = call.execute();
             if (response.isSuccessful()) {
-                Log.e(TAG, "response ----->" + response.body().string());
+                getresponse = response.body().string();
             }
         } catch (Exception e) {
             Log.e(TAG, e.toString());
@@ -252,9 +254,8 @@ public class RequestManager {
                 @Override
                 public void onResponse(Call call, Response response) throws IOException {
                     if (response.isSuccessful()) {
-                        String string = response.body().string();
-                        Log.e(TAG, "response ----->" + string);
-                        successCallBack((T) string, callBack);
+                        getresponse = response.body().string();
+                        successCallBack((T) getresponse, callBack);
                     } else {
                         failedCallBack("服务器错误", callBack);
                     }
@@ -302,9 +303,8 @@ public class RequestManager {
                 @Override
                 public void onResponse(Call call, Response response) throws IOException {
                     if (response.isSuccessful()) {
-                        String string = response.body().string();
-                        Log.e(TAG, "response ----->" + string);
-                        successCallBack((T) string, callBack);
+                        getresponse = response.body().string();
+                        successCallBack((T) getresponse, callBack);
                     } else {
                         failedCallBack("服务器错误", callBack);
                     }
