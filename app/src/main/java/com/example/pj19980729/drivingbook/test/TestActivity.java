@@ -18,9 +18,11 @@ import org.jetbrains.annotations.NotNull;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONException;
 import com.alibaba.fastjson.JSONObject;
+import com.example.pj19980729.drivingbook.okhttp.RequestUtil;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
@@ -75,12 +77,35 @@ public class TestActivity extends AppCompatActivity {
     protected void resume() {
         int sid = getIntent().getIntExtra("sid",0);
         Integer subjectId;
+        Map map = new HashMap();
         if (sid != 0) {
             subjectId = sid;
+            map.put("subjectId", subjectId);
         } else {
             subjectId = null;
         }
 
+        RequestUtil.doPost("question/getIds/", map, new Callback() {
+            @Override
+            public void onFailure(@NotNull Call call, @NotNull IOException e) {
+                Looper.prepare();
+                Toast.makeText(TestActivity.this,"网络连接异常，请检查你的网络！", Toast.LENGTH_SHORT).show();
+                Looper.loop();
+            }
+
+            @Override
+            public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
+                String str = response.body().string();
+                Map<String,Object> map = JSONObject.parseObject(str,Map.class) ;
+
+                JSONArray jsonArray = (JSONArray) map.get("qids");
+                Iterator iterator = jsonArray.iterator();
+                qids = new ArrayList<>();
+                while (iterator.hasNext()) {
+                    qids.add((Integer) iterator.next());
+                }
+            }
+        });
         getIds(subjectId, null);
 
 
