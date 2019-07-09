@@ -5,6 +5,7 @@ import android.app.Fragment;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.Window;
@@ -17,6 +18,9 @@ import android.widget.TabHost;
 import android.widget.TextView;
 import android.widget.VideoView;
 
+import com.example.pj19980729.drivingbook.application.AppVariables;
+import com.example.pj19980729.drivingbook.entity.Type;
+import com.example.pj19980729.drivingbook.entity.User;
 import com.example.pj19980729.drivingbook.test.ExamActivity;
 import com.example.pj19980729.drivingbook.test.TestActivity;
 import com.example.pj19980729.drivingbook.test.WrongActivity;
@@ -42,6 +46,9 @@ public class MainActivity extends AppCompatActivity{
     ArrayList<View> vpList;
     View view;
 
+    //MycenterFragment
+    private TextView textView14;
+
     //FirstActivity
     Button test1, exam1, wrong1;
 
@@ -49,6 +56,9 @@ public class MainActivity extends AppCompatActivity{
     ListView lv1;
     ImageView image1,image2;
     TextView tv1,tv2;
+
+
+    //thirdActivity
 
     //ForthActivity
     Button test4, exam4, wrong4;
@@ -186,8 +196,8 @@ public class MainActivity extends AppCompatActivity{
         });
 
         //FirstActivity的按钮事件监听
-        test1 = v1.findViewById(R.id.button3);
-        exam1 = v1.findViewById(R.id.button5);
+        test1 = v1.findViewById(R.id.button5);
+        exam1 = v1.findViewById(R.id.button3);
         wrong1 = v1.findViewById(R.id.button6);
 
         test1.setOnClickListener(new View.OnClickListener() {
@@ -195,7 +205,7 @@ public class MainActivity extends AppCompatActivity{
             public void onClick(View v) {
                 Intent intent = new Intent();
                 intent.setClass(MainActivity.this, TestActivity.class);
-                intent.putExtra("type","科目一");
+                intent.putExtra("sid",1);
                 startActivity(intent);
             }
         });
@@ -205,7 +215,7 @@ public class MainActivity extends AppCompatActivity{
             public void onClick(View v) {
                 Intent intent = new Intent();
                 intent.setClass(MainActivity.this, ExamActivity.class);
-                intent.putExtra("type","科目一");
+                intent.putExtra("sid",1);
                 startActivity(intent);
             }
         });
@@ -215,7 +225,7 @@ public class MainActivity extends AppCompatActivity{
             public void onClick(View v) {
                 Intent intent = new Intent();
                 intent.setClass(MainActivity.this, WrongActivity.class);
-                intent.putExtra("type","科目一");
+                intent.putExtra("sid",1);
                 startActivity(intent);
             }
         });
@@ -239,8 +249,8 @@ public class MainActivity extends AppCompatActivity{
 
 
         //ForthActivity的按钮事件监听
-        test4=v4.findViewById(R.id.button7);
-        exam4=v4.findViewById(R.id.button8);
+        test4=v4.findViewById(R.id.button8);
+        exam4=v4.findViewById(R.id.button7);
         wrong4=v4.findViewById(R.id.button9);
 
 
@@ -249,7 +259,7 @@ public class MainActivity extends AppCompatActivity{
             public void onClick(View v) {
                 Intent intent = new Intent();
                 intent.setClass(MainActivity.this,TestActivity.class);
-                intent.putExtra("type","科目四");
+                intent.putExtra("sid",4);
                 startActivity(intent);
             }
         });
@@ -259,7 +269,7 @@ public class MainActivity extends AppCompatActivity{
             public void onClick(View v) {
                 Intent intent = new Intent();
                 intent.setClass(MainActivity.this,ExamActivity.class);
-                intent.putExtra("type","科目四");
+                intent.putExtra("sid",4);
                 startActivity(intent);
             }
         });
@@ -269,12 +279,13 @@ public class MainActivity extends AppCompatActivity{
             public void onClick(View v) {
                 Intent intent = new Intent();
                 intent.setClass(MainActivity.this,WrongActivity.class);
-                intent.putExtra("type","科目四");
+                intent.putExtra("sid",4);
                 startActivity(intent);
             }
         });
 
-
+        textView14 = (TextView) findViewById(R.id.textView14);
+        textView14.setText(((User)AppVariables.map.get("user")).getName());
     }
 
 

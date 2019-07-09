@@ -11,7 +11,9 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.pj19980729.drivingbook.application.AppVariables;
 import com.example.pj19980729.drivingbook.constant.Constants;
+import com.example.pj19980729.drivingbook.entity.User;
 import com.example.pj19980729.drivingbook.okhttp.RequestManager;
 
 import com.example.pj19980729.drivingbook.MainActivity;
@@ -52,6 +54,7 @@ public class LoginActivity extends AppCompatActivity {
 
     private RequestManager requestManager;
 
+    private User user;
 
 
     @Override
@@ -68,6 +71,8 @@ public class LoginActivity extends AppCompatActivity {
         regist = (TextView) findViewById(R.id.textView12);
 
         requestManager  = new RequestManager(LoginActivity.this);
+
+        user = new User();
 
         captcha.setText("" + (int) (Math.random() * 9000 + 1000));
         captcha.setOnClickListener(new View.OnClickListener() {
@@ -142,6 +147,8 @@ public class LoginActivity extends AppCompatActivity {
             public void run() {
                 OkHttpClient client = new OkHttpClient();
                 String upwd = MD5Util.MD5Encode(pwd);
+                user.setName(name);
+
                 RequestBody body = new FormBody.Builder()
                         .add("name",name)
                         .add("pwd",upwd)
@@ -163,9 +170,13 @@ public class LoginActivity extends AppCompatActivity {
                         String str = response.body().string();
                         Map<String,Object> map = com.alibaba.fastjson.JSONObject.parseObject(str,Map.class) ;
                         int flag =(Integer)map.get("status");
+
                             if (flag==1){
                                 Intent intent = new Intent();
                                 intent.setClass(LoginActivity.this,MainActivity.class);
+                                Integer uid = (Integer) map.get("uid");
+                                user.setId(uid);
+                                AppVariables.map.put("user", user);
                                 startActivity(intent);
                             }else if (flag==0){
                                 Looper.prepare();
