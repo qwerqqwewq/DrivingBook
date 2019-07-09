@@ -16,11 +16,11 @@ import com.example.pj19980729.drivingbook.constant.Constants;
 import com.example.pj19980729.drivingbook.utils.MD5Util;
 
 import org.jetbrains.annotations.NotNull;
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
+import com.alibaba.fastjson.JSONObject;
+
 
 import java.io.IOException;
+import java.util.Map;
 
 import okhttp3.Call;
 import okhttp3.Callback;
@@ -35,7 +35,6 @@ public class RegistActivity extends AppCompatActivity {
 
     Button exit,confirm;
     EditText registname,registpassword,repeatpwd;
-    Boolean isflag;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,11 +56,6 @@ public class RegistActivity extends AppCompatActivity {
             public void onClick(View v) {
                 if (registpassword.getText().toString().equals(repeatpwd.getText().toString())){
                     postAsyn(registname.getText().toString(),registpassword.getText().toString());
-                    if (isflag==true){
-                        Intent intent = new Intent();
-                        intent.setClass(RegistActivity.this,LoginActivity.class);
-                        startActivity(intent);
-                    }
                 }else {
                     Toast.makeText(RegistActivity.this,"两次输入的用户名必须相同",Toast.LENGTH_LONG).show();
                 }
@@ -106,30 +100,25 @@ public class RegistActivity extends AppCompatActivity {
                     @Override
                     public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
                         String str = response.body().string();
-                        Integer flag = null;
-                        try {
-                            JSONArray jsonArray = new JSONArray(str);
-                            for (int i=0;i<jsonArray.length();i++) {
-                                JSONObject jsonObject = jsonArray.getJSONObject(i);
-                                Integer status = jsonObject.getInt("status");
-                                flag=status;
-                            }
+                        Map<String,Object> map = JSONObject.parseObject(str,Map.class) ;
+                        int flag =(Integer)map.get("status");
+                        Log.i("#################",String.valueOf(flag));
                             if (flag==1){
-                                Looper.prepare();
-                                Toast.makeText(RegistActivity.this,"注册成功",Toast.LENGTH_LONG).show();
-                                isflag=true;
-                                Looper.loop();
+                            Intent intent = new Intent();
+                                intent.setClass(RegistActivity.this,LoginActivity.class);
+                                startActivity(intent);
                             }else if (flag==0){
                                 Looper.prepare();
                                 Toast.makeText(RegistActivity.this,"该用户名已存在",Toast.LENGTH_LONG).show();
                                 Looper.loop();
                             }
-                        }catch (JSONException e){
-                            e.printStackTrace();
-                        }
+//                        }catch (JSONException e){
+//                            e.printStackTrace();
+//                        }
                     }
                 });
             }
         }).start();
     }
+
 }

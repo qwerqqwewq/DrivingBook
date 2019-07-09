@@ -26,6 +26,7 @@ import org.json.JSONObject;
 
 import java.io.IOException;
 import java.util.HashMap;
+import java.util.Map;
 
 import okhttp3.Call;
 import okhttp3.Callback;
@@ -160,14 +161,8 @@ public class LoginActivity extends AppCompatActivity {
                     @Override
                     public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
                         String str = response.body().string();
-                        Integer flag = null;
-                        try {
-                            JSONArray jsonArray = new JSONArray(str);
-                            for (int i=0;i<jsonArray.length();i++) {
-                                JSONObject jsonObject = jsonArray.getJSONObject(i);
-                                Integer status = jsonObject.getInt("status");
-                                flag=status;
-                            }
+                        Map<String,Object> map = com.alibaba.fastjson.JSONObject.parseObject(str,Map.class) ;
+                        int flag =(Integer)map.get("status");
                             if (flag==1){
                                 Intent intent = new Intent();
                                 intent.setClass(LoginActivity.this,MainActivity.class);
@@ -181,9 +176,6 @@ public class LoginActivity extends AppCompatActivity {
                                 Toast.makeText(LoginActivity.this,"未知错误",Toast.LENGTH_LONG).show();
                                 Looper.loop();
                             }
-                        }catch (JSONException e){
-                            e.printStackTrace();
-                        }
 
 
                     }
