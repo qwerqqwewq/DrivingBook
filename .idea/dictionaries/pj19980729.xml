@@ -13,10 +13,12 @@
       <w>getneric</w>
       <w>getresponse</w>
       <w>isflag</w>
+      <w>listshow</w>
       <w>mdiatype</w>
       <w>mycenter</w>
       <w>okhttpdo</w>
       <w>posi</w>
+      <w>qids</w>
       <w>regist</w>
       <w>registback</w>
       <w>registname</w>
@@ -36,7 +38,9 @@
       <w>ucomment</w>
       <w>uname</w>
       <w>upwd</w>
+      <w>urlx</w>
       <w>usercomment</w>
+      <w>vplist</w>
       <w>wrongvp</w>
     </words>
   </dictionary>
