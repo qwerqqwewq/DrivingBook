@@ -1,5 +1,7 @@
 package com.example.pj19980729.drivingbook.test;
 
+import android.net.http.SslError;
+import android.os.Build;
 import android.os.Looper;
 import android.support.annotation.NonNull;
 import android.support.v4.view.PagerAdapter;
@@ -10,7 +12,10 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.webkit.SslErrorHandler;
+import android.webkit.WebSettings;
 import android.webkit.WebView;
+import android.webkit.WebViewClient;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
 import android.widget.TextView;
@@ -58,6 +63,8 @@ public class TestActivity extends AppCompatActivity {
 
     List<ListView> pageList = new ArrayList<ListView>();
 
+    List<String> listk=new ArrayList<>();
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -83,13 +90,22 @@ public class TestActivity extends AppCompatActivity {
         question1 = findViewById(R.id.question1);
 
 
-        testAdapter= new ViewPageAdapter(this,pageList);
-        testvp.setAdapter(testAdapter);
+
+//        testAdapter= new ViewPageAdapter(this,pageList);
+//        testvp.setAdapter(testAdapter);
 
 
         //向服务端发送请求并将收到的题目id存入qids
         getQuestionIds();
 
+
+        listk.add("https//m.baidu.com");
+        listk.add("https://www.csdn.net/");
+
+//        View q =inflater.inflate(R.layout.question,null);
+//        vpList.add(q);
+        ViewPageAdapter adapter =new ViewPageAdapter(this,listk);
+        testvp.setAdapter(adapter);
 
 
 
@@ -137,37 +153,37 @@ public class TestActivity extends AppCompatActivity {
 
     }
 
-    @Override
-    protected void onStart() {
-        super.onStart();
-
-
-        //给页面配置ListView
-        //1.获取questionVO
-        for (int k = 0; k < qids.size(); k++) {
-            getQuestion(qids.get(k));
-            QuestionVO questionVO = questionVOList.get(k);
-            //2.将需要显示的内容放置于泛型中
-            List<String> list = new ArrayList<>();
-            for (int i = 1; i <= 2 + questionVO.getOptionList().size() + questionVO.getTypes().size(); i++) {
-                String object;
-                if (i == 1) {
-                    object = questionVO.getContent();
-                } else if (i > 1 && i <= questionVO.getOptionList().size() + 1) {
-                    object = "<p>" + questionVO.getOptionList().get(i - 2) + "</p>";
-                } else if (i > questionVO.getOptionList().size() + 1
-                        && i < 2 + questionVO.getOptionList().size() + questionVO.getTypes().size()) {
-                    object = "<p>" + questionVO.getTypes().get(i - questionVO.getOptionList().size() - 2).getType() + "</p>";
-                } else {
-                    object = questionVO.getResolve();
-                }
-                list.add(object);
-            }
-            listAdapter = new ListAdapter(TestActivity.this, list);
-            lvQuestion.setAdapter(listAdapter);
-            pageList.add(lvQuestion);
-        }
-        testAdapter.notifyDataSetChanged();
-
-    }
+//    @Override
+//    protected void onStart() {
+//        super.onStart();
+//
+//
+//        //给页面配置ListView
+//        //1.获取questionVO
+//        for (int k = 0; k < qids.size(); k++) {
+//            getQuestion(qids.get(k));
+//            QuestionVO questionVO = questionVOList.get(k);
+//            //2.将需要显示的内容放置于泛型中
+//            List<String> list = new ArrayList<>();
+//            for (int i = 1; i <= 2 + questionVO.getOptionList().size() + questionVO.getTypes().size(); i++) {
+//                String object;
+//                if (i == 1) {
+//                    object = questionVO.getContent();
+//                } else if (i > 1 && i <= questionVO.getOptionList().size() + 1) {
+//                    object = "<p>" + questionVO.getOptionList().get(i - 2) + "</p>";
+//                } else if (i > questionVO.getOptionList().size() + 1
+//                        && i < 2 + questionVO.getOptionList().size() + questionVO.getTypes().size()) {
+//                    object = "<p>" + questionVO.getTypes().get(i - questionVO.getOptionList().size() - 2).getType() + "</p>";
+//                } else {
+//                    object = questionVO.getResolve();
+//                }
+//                list.add(object);
+//            }
+//            listAdapter = new ListAdapter(TestActivity.this, list);
+//            lvQuestion.setAdapter(listAdapter);
+//            pageList.add(lvQuestion);
+//        }
+//        testAdapter.notifyDataSetChanged();
+//
+//    }
 }

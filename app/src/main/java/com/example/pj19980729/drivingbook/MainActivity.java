@@ -224,26 +224,14 @@ public class MainActivity extends AppCompatActivity{
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent();
-                intent.setClass(MainActivity.this, WrongActivity.class);
+                intent.setClass(MainActivity.this, specialActivity.class);
                 intent.putExtra("sid",1);
                 startActivity(intent);
             }
         });
 
         //SecondActivity的按钮事件监听
-        if (flag==2) {
-            lv1 = v2.findViewById(R.id.lv1);
-            tv1 = findViewById(R.id.textView23);
-            tv2 = findViewById(R.id.textView24);
-            image1 = findViewById(R.id.imageView3);
-            image2 = findViewById(R.id.imageView4);
-            ArrayList<String> list = new ArrayList<String>();
-            for (int i = 0; i < 21; i++) {
-                list.add("测试:" + i);
-            }
-            ListViewAdapter adapter = new ListViewAdapter(this, R.layout.studyview, list);
-            lv1.setAdapter(adapter);
-        }
+
 
 
 
@@ -278,7 +266,7 @@ public class MainActivity extends AppCompatActivity{
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent();
-                intent.setClass(MainActivity.this,WrongActivity.class);
+                intent.setClass(MainActivity.this,specialActivity.class);
                 intent.putExtra("sid",4);
                 startActivity(intent);
             }

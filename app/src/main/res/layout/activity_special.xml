@@ -4,30 +4,32 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".emptyactivity.ForthActivity">
+    tools:context=".specialActivity">
 
     <Button
-        android:id="@+id/button7"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
-        android:text="模拟考试" />
-
-    <Button
-        android:id="@+id/button8"
+        android:id="@+id/button11"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="112dp"
-        android:text="顺序练习" />
+        android:layout_marginTop="212dp"
+        android:text="选择题" />
 
     <Button
-        android:id="@+id/button9"
+        android:id="@+id/button12"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
+        android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="112dp"
-        android:text="专项练习" />
+        android:layout_marginTop="100dp"
+        android:text="填空题" />
+
+    <Button
+        android:id="@+id/button13"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/button11"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="64dp"
+        android:text="判断题" />
 </RelativeLayout>

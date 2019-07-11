@@ -1,12 +1,11 @@
-package com.example.pj19980729.drivingbook.test;
+package com.example.pj19980729.drivingbook;
 
+import android.content.Intent;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.webkit.WebView;
 
 import com.alibaba.fastjson.JSON;
-import com.example.pj19980729.drivingbook.R;
 import com.example.pj19980729.drivingbook.okhttp.RequestUtil;
 import com.example.pj19980729.drivingbook.utils.ViewPageAdapter;
 
@@ -22,19 +21,20 @@ import okhttp3.Call;
 import okhttp3.Callback;
 import okhttp3.Response;
 
-public class ExamActivity extends AppCompatActivity {
+public class specialtestActivity extends AppCompatActivity {
+
 
     List<Integer> qids = new ArrayList<>();
-//    WebView question1;
-    ViewPager examvp;
+    //    WebView question1;
+    ViewPager specialvp;
     List<String> listk=new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_exam);
+        setContentView(R.layout.activity_specialtest);
 
-        examvp = findViewById(R.id.examvp);
+        specialvp = findViewById(R.id.specialvp);
 
         getQuestionIds();
 
@@ -43,23 +43,27 @@ public class ExamActivity extends AppCompatActivity {
         listk.add("https://www.csdn.net/");
 
         ViewPageAdapter adapter =new ViewPageAdapter(this,listk);
-        examvp.setAdapter(adapter);
+        specialvp.setAdapter(adapter);
+
+
 
 
     }
 
 
-
     public void getQuestionIds() {
         int sid = getIntent().getIntExtra("sid", 0);
+        Integer tid = getIntent().getIntExtra("tid",0);
         Integer subjectId;
         Map map = new HashMap();
+        List<Integer> tids = new ArrayList<>();
+        tids.add(tid);
         if (sid != 0) {
             subjectId = sid;
             map.put("subjectId", subjectId);
+            map.put("tid",tids);
         }
-        map.put("exam", true);
-        map.put("num",30);
+        map.put("exam", false);
 
         RequestUtil requestUtil = new RequestUtil();
         requestUtil.doPost("question/getIds/", map, new Callback() {

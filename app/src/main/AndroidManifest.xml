@@ -29,7 +29,9 @@
         <activity android:name=".test.TestActivity" />
         <activity android:name=".test.ExamActivity" />
         <activity android:name=".test.WrongActivity" />
-        <activity android:name=".ViewPlayerActivity"></activity>
+        <activity android:name=".ViewPlayerActivity" />
+        <activity android:name=".specialActivity" />
+        <activity android:name=".specialtestActivity"></activity>
     </application>
 
 </manifest>
