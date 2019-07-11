@@ -63,7 +63,7 @@ public class specialtestActivity extends AppCompatActivity {
         if (sid != 0) {
             subjectId = sid;
             map.put("subjectId", subjectId);
-            map.put("tid",tids);
+            map.put("tid",tids.get(0));
         }
         map.put("exam", false);
 

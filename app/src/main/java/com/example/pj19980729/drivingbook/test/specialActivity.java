@@ -22,8 +22,8 @@ public class specialActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_special);
 
-        click = (Button) findViewById(R.id.button11);
-        judge = (Button) findViewById(R.id.button12);
+        click = (Button) findViewById(R.id.button12);
+        judge = (Button) findViewById(R.id.button11);
         multiple = (Button) findViewById(R.id.button13);
 
         final int subjectId = getIntent().getIntExtra("sid", 0);
@@ -35,6 +35,7 @@ public class specialActivity extends AppCompatActivity {
                 intent.setClass(specialActivity.this,specialtestActivity.class);
                 intent.putExtra("sid",subjectId);
                 intent.putExtra("tid",1);
+                startActivity(intent);
             }
         });
 
@@ -45,9 +46,13 @@ public class specialActivity extends AppCompatActivity {
                 intent.setClass(specialActivity.this,specialtestActivity.class);
                 intent.putExtra("sid",subjectId);
                 intent.putExtra("tid",2);
+                startActivity(intent);
             }
         });
 
+        if (subjectId == 1) {
+            multiple.setVisibility(View.INVISIBLE);
+        }
         multiple.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -55,6 +60,7 @@ public class specialActivity extends AppCompatActivity {
                 intent.setClass(specialActivity.this,specialtestActivity.class);
                 intent.putExtra("sid",subjectId);
                 intent.putExtra("tid",6);
+                startActivity(intent);
             }
         });
 

@@ -8,6 +8,8 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.Window;
+import android.webkit.WebView;
+import android.webkit.WebViewClient;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ListView;
@@ -16,15 +18,29 @@ import android.widget.RadioGroup;
 import android.widget.TabHost;
 import android.widget.TextView;
 
+import com.alibaba.fastjson.JSON;
 import com.example.pj19980729.drivingbook.application.AppVariables;
+import com.example.pj19980729.drivingbook.constant.Constants;
 import com.example.pj19980729.drivingbook.entity.User;
+import com.example.pj19980729.drivingbook.okhttp.RequestUtil;
 import com.example.pj19980729.drivingbook.test.ExamActivity;
 import com.example.pj19980729.drivingbook.test.TestActivity;
 import com.example.pj19980729.drivingbook.test.WrongActivity;
 import com.example.pj19980729.drivingbook.test.specialActivity;
 import com.example.pj19980729.drivingbook.utils.MyAdapter;
+import com.example.pj19980729.drivingbook.utils.ViewPageAdapter;
 
+import org.jetbrains.annotations.NotNull;
+
+import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import okhttp3.Call;
+import okhttp3.Callback;
+import okhttp3.Response;
 
 public class MainActivity extends AppCompatActivity{
 
@@ -50,19 +66,18 @@ public class MainActivity extends AppCompatActivity{
     private Button exit;
 
 
-
+    List<Integer> sids = new ArrayList<>();
+    List<String> listk=new ArrayList<>();
+    ViewPageAdapter adapter;
 
 
     //FirstActivity
     Button test1, exam1, wrong1;
 
-    //SecondActivity
-    ListView lv1;
-    ImageView image1,image2;
-    TextView tv1,tv2;
 
 
     //thirdActivity
+    WebView thirdwv;
 
     //ForthActivity
     Button test4, exam4, wrong4;
@@ -234,10 +249,25 @@ public class MainActivity extends AppCompatActivity{
             }
         });
 
-        //SecondActivity的按钮事件监听
+
 
 
         //ThirdActivity的按钮事件监听
+        LayoutInflater inflater2 = LayoutInflater.from(this);
+        View view2 = inflater2.inflate(R.layout.activity_third,null);
+        thirdwv = view2.findViewById(R.id.thirdwv);
+
+        thirdwv.getSettings().setJavaScriptEnabled(true);
+        thirdwv.requestFocus();
+        String Str = String.format("%s/%s/%s", Constants.context,Constants.video,2);
+        thirdwv.loadUrl(Str);
+        thirdwv.setWebViewClient(new WebViewClient(){
+            @Override
+            public boolean shouldOverrideUrlLoading(WebView view, String url) {
+                view.loadUrl(url);
+                return super.shouldOverrideUrlLoading(view, url);
+            }
+        });
 
 
 

@@ -49,7 +49,6 @@ public class RequestUtil {
                for (Map.Entry<String, Object> entry : entries) {
                    String key = valueOf(entry.getKey());
                    String value = valueOf(entry.getValue());
-                   Log.d("HttpUtils", "key=="+key+"value=="+value);
                    builder.add(key, value);
                }
                Request request = new Request.Builder()
