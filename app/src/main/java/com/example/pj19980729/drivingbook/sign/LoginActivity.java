@@ -178,9 +178,6 @@ public class LoginActivity extends AppCompatActivity {
                                 user.setId(uid);
                                 AppVariables.map.put("user", user);
                                 startActivity(intent);
-                                Looper.prepare();
-                                Toast.makeText(LoginActivity.this,"登录成功",Toast.LENGTH_LONG).show();
-                                Looper.loop();
                             }else if (flag==0){
                                 Looper.prepare();
                                 Toast.makeText(LoginActivity.this,"用户名或密码不正确",Toast.LENGTH_LONG).show();
