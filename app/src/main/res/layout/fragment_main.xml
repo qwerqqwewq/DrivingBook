@@ -19,7 +19,8 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             style="@style/radiobutton"
-            android:background="@drawable/textviewtype"
+            android:background="@null"
+            android:button="@null"
             android:text="科目一" />
 
         <RadioButton
@@ -28,7 +29,8 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             style="@style/radiobutton"
-            android:background="@drawable/textviewtype"
+            android:background="@null"
+            android:button="@null"
             android:text="科目二" />
 
         <RadioButton
@@ -37,7 +39,8 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             style="@style/radiobutton"
-            android:background="@drawable/textviewtype"
+            android:background="@null"
+            android:button="@null"
             android:text="科目三" />
 
         <RadioButton
@@ -46,7 +49,8 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             style="@style/radiobutton"
-            android:background="@drawable/textviewtype"
+            android:background="@null"
+            android:button="@null"
             android:text="科目四" />
 
     </RadioGroup>
