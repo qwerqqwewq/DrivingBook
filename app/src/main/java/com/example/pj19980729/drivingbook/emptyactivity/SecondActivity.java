@@ -14,7 +14,7 @@ public class SecondActivity extends AppCompatActivity {
 
 
     //SecondActivity
-    WebView secondwv;
+//    WebView secondwv;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,20 +22,20 @@ public class SecondActivity extends AppCompatActivity {
         setContentView(R.layout.activity_second);
 
         //SecondActivity的按钮事件监听
-        LayoutInflater inflater1 = LayoutInflater.from(this);
-        View view1 = inflater1.inflate(R.layout.activity_second,null);
-        secondwv = view1.findViewById(R.id.secondwv);
-
-        secondwv.getSettings().setJavaScriptEnabled(true);
-        secondwv.requestFocus();
-        String htmlStr = String.format("%s/%s/%s", Constants.context,Constants.video,2);
-        secondwv.loadUrl(htmlStr);
-        secondwv.setWebViewClient(new WebViewClient(){
-            @Override
-            public boolean shouldOverrideUrlLoading(WebView view, String url) {
-                view.loadUrl(url);
-                return super.shouldOverrideUrlLoading(view, url);
-            }
-        });
+//        LayoutInflater inflater1 = LayoutInflater.from(this);
+//        View view1 = inflater1.inflate(R.layout.activity_second,null);
+//        secondwv = view1.findViewById(R.id.secondwv);
+//
+//        secondwv.getSettings().setJavaScriptEnabled(true);
+//        secondwv.requestFocus();
+//        String htmlStr = String.format("%s/%s/%s", Constants.context,Constants.video,2);
+//        secondwv.loadUrl(htmlStr);
+//        secondwv.setWebViewClient(new WebViewClient(){
+//            @Override
+//            public boolean shouldOverrideUrlLoading(WebView view, String url) {
+//                view.loadUrl(url);
+//                return super.shouldOverrideUrlLoading(view, url);
+//            }
+//        });
     }
 }

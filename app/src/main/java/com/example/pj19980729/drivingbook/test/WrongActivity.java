@@ -62,9 +62,8 @@ public class WrongActivity extends AppCompatActivity {
     public void getQuestionIds() {
         Map map = new HashMap();
         map.put("uid", ((User)AppVariables.map.get("user")).getId());
-
         RequestUtil requestUtil = new RequestUtil();
-        requestUtil.doPost("question/getIds/", map, new Callback() {
+        requestUtil.doPost("mistake/find/", map, new Callback() {
             @Override
             public void onFailure(@NotNull Call call, @NotNull IOException e) {
             }

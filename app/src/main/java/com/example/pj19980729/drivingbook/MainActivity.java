@@ -77,11 +77,11 @@ public class MainActivity extends AppCompatActivity{
     Button test1, exam1, wrong1;
 
     //secondActivity
-    Button button14;
+    WebView secondwv;
 
 
     //thirdActivity
-    Button button16;
+    WebView thirdwv;
 
     //ForthActivity
     Button test4, exam4, wrong4;
@@ -139,34 +139,6 @@ public class MainActivity extends AppCompatActivity{
         vpList.add(v4);
 
 
-//        //适配器中
-//        PagerAdapter pagerAdapter = new PagerAdapter() {
-//
-//            //获取当前有多少个界面
-//            @Override
-//            public int getCount() {
-//                return vpList.size();
-//            }
-//
-//            //判断是否由对象生成的界面
-//            @Override
-//            public boolean isViewFromObject(@NonNull View view, @NonNull Object o) {
-//                return view == o;
-//            }
-//
-//            //获取当前界面的位置
-//            @Override
-//            public Object instantiateItem(ViewGroup container, int position) {
-//                container.addView(vpList.get(position));
-//                return vpList.get(position);
-//            }
-//
-//            //销毁上一个界面
-//            @Override
-//            public void destroyItem(@NonNull ViewGroup container, int position, @NonNull Object object) {
-//                container.removeView(vpList.get(position));
-//            }
-//        };
         MyAdapter pagerAdapter = new MyAdapter(vpList);
         vp.setAdapter(pagerAdapter);
         vp.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
@@ -255,27 +227,75 @@ public class MainActivity extends AppCompatActivity{
 
 
         //secondActivity的按钮事件监听
-        button14 =v2.findViewById(R.id.button14);
-        button14.setOnClickListener(new View.OnClickListener() {
+        secondwv = v2.findViewById(R.id.secondwv);
+        WebSettings webSettings=secondwv.getSettings();
+        //允许执行javascript脚本
+        webSettings.setJavaScriptEnabled(true);
+        //允许JavaScript可以自动打开Windows
+        webSettings.setJavaScriptCanOpenWindowsAutomatically(true);
+        //设置是否缓存
+        webSettings.setAppCacheEnabled(true);
+        //设置缓存模式
+        webSettings.setCacheMode(webSettings.LOAD_CACHE_ELSE_NETWORK);
+        //设置缓存存放路径
+        //webSettings.setAppCachePath("");
+        //支持缩放（适配到当前屏幕）
+        webSettings.setSupportZoom(true);
+        //调整图片到合适大小
+        webSettings.setUseWideViewPort(true);
+        //调整支持内容的重新布局
+        webSettings.setLayoutAlgorithm(WebSettings.LayoutAlgorithm.SINGLE_COLUMN);
+        //设置可以控制屏幕
+        webSettings.setDisplayZoomControls(true);
+        //设置默认字体大小
+        //webSettings.setDefaultFontSize();
+        //是否开始内容存储
+        webSettings.setDomStorageEnabled(true);
+        webSettings.setLoadWithOverviewMode(true);
+        String htmlStr = String.format("%s/%s/%s", Constants.context,Constants.video,2);
+        secondwv.loadUrl(htmlStr);
+        secondwv.setWebViewClient(new WebViewClient(){
             @Override
-            public void onClick(View v) {
-                Intent intent = new Intent();
-                intent.setClass(MainActivity.this,ViewPlayerActivity.class);
-                intent.putExtra("sid", 2);
-                startActivity(intent);
+            public boolean shouldOverrideUrlLoading(WebView view, String url) {
+                view.loadUrl(url);
+                return super.shouldOverrideUrlLoading(view, url);
             }
         });
 
 
         //ThirdActivity的按钮事件监听
-        button16 = v3.findViewById(R.id.button16);
-        button16.setOnClickListener(new View.OnClickListener() {
+        thirdwv = v3.findViewById(R.id.thirdwv);
+        WebSettings webSettings1=thirdwv.getSettings();
+        //允许执行javascript脚本
+        webSettings1.setJavaScriptEnabled(true);
+        //允许JavaScript可以自动打开Windows
+        webSettings1.setJavaScriptCanOpenWindowsAutomatically(true);
+        //设置是否缓存
+        webSettings1.setAppCacheEnabled(true);
+        //设置缓存模式
+        webSettings1.setCacheMode(webSettings.LOAD_CACHE_ELSE_NETWORK);
+        //设置缓存存放路径
+        //webSettings.setAppCachePath("");
+        //支持缩放（适配到当前屏幕）
+        webSettings1.setSupportZoom(true);
+        //调整图片到合适大小
+        webSettings1.setUseWideViewPort(true);
+        //调整支持内容的重新布局
+        webSettings1.setLayoutAlgorithm(WebSettings.LayoutAlgorithm.SINGLE_COLUMN);
+        //设置可以控制屏幕
+        webSettings1.setDisplayZoomControls(true);
+        //设置默认字体大小
+        //webSettings.setDefaultFontSize();
+        //是否开始内容存储
+        webSettings1.setDomStorageEnabled(true);
+        webSettings1.setLoadWithOverviewMode(true);
+        String Str = String.format("%s/%s/%s", Constants.context,Constants.video,3);
+        thirdwv.loadUrl(Str);
+        thirdwv.setWebViewClient(new WebViewClient(){
             @Override
-            public void onClick(View v) {
-                Intent intent = new Intent();
-                intent.setClass(MainActivity.this,ViewPlayerActivity.class);
-                intent.putExtra("sid", 3);
-                startActivity(intent);
+            public boolean shouldOverrideUrlLoading(WebView view, String url) {
+                view.loadUrl(url);
+                return super.shouldOverrideUrlLoading(view, url);
             }
         });
 

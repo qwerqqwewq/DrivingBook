@@ -45,6 +45,7 @@ public class ViewPlayerActivity extends AppCompatActivity {
         //webSettings.setDefaultFontSize();
         //是否开始内容存储
         webSettings.setDomStorageEnabled(true);
+        webSettings.setLoadWithOverviewMode(true);
         String htmlStr = String.format("%s/%s/%s", Constants.context,Constants.video,sid);
         video.loadUrl(htmlStr);
         video.setWebViewClient(new WebViewClient(){

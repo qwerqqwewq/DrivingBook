@@ -36,7 +36,6 @@ public class RequestUtil {
        final String urlx = String.format("%s/%s", Constants.context, url);
        final String data = JSONObject.toJSONString(map);
 
-        Log.i("************************", data);
 
        new Thread(new Runnable() {
            @Override
