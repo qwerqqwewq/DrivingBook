@@ -31,7 +31,8 @@
         <activity android:name=".test.WrongActivity" />
         <activity android:name=".ViewPlayerActivity" />
         <activity android:name=".test.specialActivity" />
-        <activity android:name=".test.specialtestActivity"></activity>
+        <activity android:name=".test.specialtestActivity" />
+        <activity android:name=".LoveActivity"></activity>
     </application>
 
 </manifest>

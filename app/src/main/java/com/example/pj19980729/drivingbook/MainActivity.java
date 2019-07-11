@@ -20,6 +20,7 @@ import com.example.pj19980729.drivingbook.application.AppVariables;
 import com.example.pj19980729.drivingbook.entity.User;
 import com.example.pj19980729.drivingbook.test.ExamActivity;
 import com.example.pj19980729.drivingbook.test.TestActivity;
+import com.example.pj19980729.drivingbook.test.WrongActivity;
 import com.example.pj19980729.drivingbook.test.specialActivity;
 import com.example.pj19980729.drivingbook.utils.MyAdapter;
 
@@ -44,6 +45,13 @@ public class MainActivity extends AppCompatActivity{
 
     //MycenterFragment
     private TextView textView14;
+    private TextView textView15;
+    private TextView textView16;
+    private Button exit;
+
+
+
+
 
     //FirstActivity
     Button test1, exam1, wrong1;
@@ -229,6 +237,7 @@ public class MainActivity extends AppCompatActivity{
         //SecondActivity的按钮事件监听
 
 
+        //ThirdActivity的按钮事件监听
 
 
 
@@ -268,8 +277,41 @@ public class MainActivity extends AppCompatActivity{
             }
         });
 
+
+        //mycenter
         textView14 = (TextView) findViewById(R.id.textView14);
+        textView15 = (TextView) findViewById(R.id.textView15);
+        textView16 = (TextView) findViewById(R.id.textView16);
+        exit = (Button) findViewById(R.id.button10);
         textView14.setText(((User)AppVariables.map.get("user")).getName());
+
+
+        textView15.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent();
+                intent.setClass(MainActivity.this,WrongActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        textView16.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent();
+                intent.setClass(MainActivity.this,LoveActivity.class);
+            }
+        });
+
+        exit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                AppVariables.map.clear();
+                finish();
+            }
+        });
+
+
     }
 
 
