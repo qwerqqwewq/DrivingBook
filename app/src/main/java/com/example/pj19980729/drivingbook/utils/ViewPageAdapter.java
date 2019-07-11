@@ -80,6 +80,7 @@ public class ViewPageAdapter extends PagerAdapter {
         //webSettings.setDefaultFontSize();
         //是否开始内容存储
         webSettings.setDomStorageEnabled(true);
+        webSettings.setLoadWithOverviewMode(true);
         question.requestFocus();
         String htmlStr = list.get(position);
         question.loadUrl(htmlStr);

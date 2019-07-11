@@ -53,7 +53,7 @@ public class LoveActivity extends AppCompatActivity {
         Map map = new HashMap();
         map.put("uid", ((User)AppVariables.map.get("user")).getId());
         RequestUtil requestUtil = new RequestUtil();
-        requestUtil.doPost("fav/find", map, new Callback() {
+        requestUtil.doPost("fav/find/", map, new Callback() {
             @Override
             public void onFailure(@NotNull Call call, @NotNull IOException e) {
             }
@@ -62,7 +62,7 @@ public class LoveActivity extends AppCompatActivity {
             public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
                 String data= response.body().string();
                 Map map1 = (Map) JSON.parse(data);
-                qids = (List<Integer>) map1.get("qids");
+                qids = (List<Integer>) map1.get("qid");
                 String urlx = String.format("%s/%s", Constants.context,Constants.quiz);
                 for (int i=0;i<qids.size();i++){
                     int k= i+1;
