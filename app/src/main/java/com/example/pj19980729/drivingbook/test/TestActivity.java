@@ -25,6 +25,7 @@ import com.alibaba.fastjson.JSON;
 import com.example.pj19980729.drivingbook.R;
 import org.jetbrains.annotations.NotNull;
 
+import com.example.pj19980729.drivingbook.constant.Constants;
 import com.example.pj19980729.drivingbook.entity.QuestionVO;
 import com.example.pj19980729.drivingbook.okhttp.RequestUtil;
 import com.example.pj19980729.drivingbook.utils.ListAdapter;
@@ -49,21 +50,17 @@ public class TestActivity extends AppCompatActivity {
 
     ViewPager testvp;
     TextView username, usercomment, replyname, replycomment, selectall;
-    ArrayList<View> vpList;
     ListView comment, lvQuestion;
-    ViewPageAdapter testAdapter;
-    ListAdapter listAdapter;
 
     List<Integer> qids = new ArrayList<>();
-    List<Map<String,Object>> list =new ArrayList<Map<String, Object>>();
 
     List<QuestionVO> questionVOList = new ArrayList<>();
 
     WebView question1;
 
-    List<ListView> pageList = new ArrayList<ListView>();
-
     List<String> listk=new ArrayList<>();
+
+    ViewPageAdapter adapter;
 
 
     @Override
@@ -99,13 +96,14 @@ public class TestActivity extends AppCompatActivity {
         getQuestionIds();
 
 
-        listk.add("https//m.baidu.com");
-        listk.add("https://www.csdn.net/");
+
 
 //        View q =inflater.inflate(R.layout.question,null);
 //        vpList.add(q);
-        ViewPageAdapter adapter =new ViewPageAdapter(this,listk);
+        adapter =new ViewPageAdapter(this,listk);
         testvp.setAdapter(adapter);
+        testvp.setOffscreenPageLimit(qids.size());
+
 
 
 
@@ -133,6 +131,14 @@ public class TestActivity extends AppCompatActivity {
                 String data= response.body().string();
                 Map map1 = (Map) JSON.parse(data);
                 qids = (List<Integer>) map1.get("qids");
+                String urlx = String.format("%s/%s", Constants.context,Constants.quiz);
+                for (int i=0;i<qids.size();i++){
+                    int k= i+1;
+                    String qurl=String.format("%s/%s?num=%s",urlx,qids.get(i),k);
+                    listk.add(qurl);
+                }
+                adapter.notifyDataSetChanged();
+
             }
         });
 

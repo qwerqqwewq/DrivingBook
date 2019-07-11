@@ -6,6 +6,7 @@ import android.os.Bundle;
 
 import com.alibaba.fastjson.JSON;
 import com.example.pj19980729.drivingbook.application.AppVariables;
+import com.example.pj19980729.drivingbook.constant.Constants;
 import com.example.pj19980729.drivingbook.entity.User;
 import com.example.pj19980729.drivingbook.okhttp.RequestUtil;
 import com.example.pj19980729.drivingbook.utils.ViewPageAdapter;
@@ -29,6 +30,8 @@ public class LoveActivity extends AppCompatActivity {
     ViewPager lovevp;
     List<String> listk=new ArrayList<>();
 
+    ViewPageAdapter adapter;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -39,11 +42,10 @@ public class LoveActivity extends AppCompatActivity {
         getQuestionIds();
 
 
-        listk.add("https//m.baidu.com");
-        listk.add("https://www.csdn.net/");
 
-        ViewPageAdapter adapter =new ViewPageAdapter(this,listk);
+        adapter =new ViewPageAdapter(this,listk);
         lovevp.setAdapter(adapter);
+        lovevp.setOffscreenPageLimit(qids.size());
     }
 
 
@@ -62,6 +64,13 @@ public class LoveActivity extends AppCompatActivity {
                 String data= response.body().string();
                 Map map1 = (Map) JSON.parse(data);
                 qids = (List<Integer>) map1.get("qids");
+                String urlx = String.format("%s/%s", Constants.context,Constants.quiz);
+                for (int i=0;i<qids.size();i++){
+                    int k= i+1;
+                    String qurl=String.format("%s/%s?num=%s",urlx,qids.get(i),k);
+                    listk.add(qurl);
+                }
+                adapter.notifyDataSetChanged();
             }
         });
 

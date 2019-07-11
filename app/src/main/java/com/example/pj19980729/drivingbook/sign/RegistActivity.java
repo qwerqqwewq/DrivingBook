@@ -80,10 +80,9 @@ public class RegistActivity extends AppCompatActivity {
             @Override
             public void run() {
                 OkHttpClient client = new OkHttpClient();
-                String upwd = MD5Util.MD5Encode(pwd);
                 RequestBody body = new FormBody.Builder()
                         .add("name",name)
-                        .add("pwd",upwd)
+                        .add("pwd",pwd)
                         .build();
                 String url = String.format("%s/%s", Constants.context, "user/regist/do");
                 Request request = new Request.Builder()

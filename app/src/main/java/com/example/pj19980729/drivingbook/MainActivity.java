@@ -307,7 +307,7 @@ public class MainActivity extends AppCompatActivity{
             @Override
             public void onClick(View v) {
                 AppVariables.map.clear();
-                finish();
+                System.exit(0);
             }
         });
 
