@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.Window;
+import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.Button;
@@ -21,6 +22,7 @@ import android.widget.TextView;
 import com.alibaba.fastjson.JSON;
 import com.example.pj19980729.drivingbook.application.AppVariables;
 import com.example.pj19980729.drivingbook.constant.Constants;
+import com.example.pj19980729.drivingbook.emptyactivity.ViewPlayerActivity;
 import com.example.pj19980729.drivingbook.entity.User;
 import com.example.pj19980729.drivingbook.okhttp.RequestUtil;
 import com.example.pj19980729.drivingbook.test.ExamActivity;
@@ -74,10 +76,12 @@ public class MainActivity extends AppCompatActivity{
     //FirstActivity
     Button test1, exam1, wrong1;
 
+    //secondActivity
+    Button button14;
 
 
     //thirdActivity
-    WebView thirdwv;
+    Button button16;
 
     //ForthActivity
     Button test4, exam4, wrong4;
@@ -250,24 +254,32 @@ public class MainActivity extends AppCompatActivity{
         });
 
 
+        //secondActivity的按钮事件监听
+        button14 =v2.findViewById(R.id.button14);
+        button14.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent();
+                intent.setClass(MainActivity.this,ViewPlayerActivity.class);
+                intent.putExtra("sid", 2);
+                startActivity(intent);
+            }
+        });
 
 
         //ThirdActivity的按钮事件监听
-        LayoutInflater inflater2 = LayoutInflater.from(this);
-        View view2 = inflater2.inflate(R.layout.activity_third,null);
-        thirdwv = view2.findViewById(R.id.thirdwv);
-
-        thirdwv.getSettings().setJavaScriptEnabled(true);
-        thirdwv.requestFocus();
-        String Str = String.format("%s/%s/%s", Constants.context,Constants.video,2);
-        thirdwv.loadUrl(Str);
-        thirdwv.setWebViewClient(new WebViewClient(){
+        button16 = v3.findViewById(R.id.button16);
+        button16.setOnClickListener(new View.OnClickListener() {
             @Override
-            public boolean shouldOverrideUrlLoading(WebView view, String url) {
-                view.loadUrl(url);
-                return super.shouldOverrideUrlLoading(view, url);
+            public void onClick(View v) {
+                Intent intent = new Intent();
+                intent.setClass(MainActivity.this,ViewPlayerActivity.class);
+                intent.putExtra("sid", 3);
+                startActivity(intent);
             }
         });
+
+
 
 
 

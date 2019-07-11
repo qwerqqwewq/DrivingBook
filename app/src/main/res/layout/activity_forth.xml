@@ -4,13 +4,17 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".emptyactivity.ForthActivity">
+    tools:context=".emptyactivity.ForthActivity"
+    android:background="@drawable/backg3">
 
     <Button
         android:id="@+id/button7"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="189dp"
+        android:background="@drawable/shape"
         android:text="模拟考试" />
 
     <Button
@@ -19,7 +23,8 @@
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="112dp"
+        android:layout_marginTop="254dp"
+        android:background="@drawable/shape"
         android:text="顺序练习" />
 
     <Button
@@ -28,6 +33,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="112dp"
+        android:layout_marginBottom="82dp"
+        android:background="@drawable/shape"
         android:text="专项练习" />
 </RelativeLayout>

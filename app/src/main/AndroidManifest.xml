@@ -32,7 +32,8 @@
         <activity android:name=".emptyactivity.ViewPlayerActivity" />
         <activity android:name=".test.specialActivity" />
         <activity android:name=".test.specialtestActivity" />
-        <activity android:name=".LoveActivity"></activity>
+        <activity android:name=".LoveActivity" />
+
     </application>
 
 </manifest>
