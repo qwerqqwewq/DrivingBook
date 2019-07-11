@@ -94,7 +94,9 @@ public class RegistActivity extends AppCompatActivity {
                 call.enqueue(new Callback() {
                     @Override
                     public void onFailure(@NotNull Call call, @NotNull IOException e) {
-
+                        Looper.prepare();
+                        Toast.makeText(RegistActivity.this,"网路连接错误哦",Toast.LENGTH_LONG).show();
+                        Looper.loop();
                     }
 
                     @Override
@@ -102,7 +104,6 @@ public class RegistActivity extends AppCompatActivity {
                         String str = response.body().string();
                         Map<String,Object> map = JSONObject.parseObject(str,Map.class) ;
                         int flag =(Integer)map.get("status");
-                        Log.i("#################",String.valueOf(flag));
                             if (flag==1){
                             Intent intent = new Intent();
                                 intent.setClass(RegistActivity.this,LoginActivity.class);
@@ -110,6 +111,14 @@ public class RegistActivity extends AppCompatActivity {
                             }else if (flag==0){
                                 Looper.prepare();
                                 Toast.makeText(RegistActivity.this,"该用户名已存在",Toast.LENGTH_LONG).show();
+                                Looper.loop();
+                            }else if (flag==2){
+                                Looper.prepare();
+                                Toast.makeText(RegistActivity.this,"用户名或密码不能为空",Toast.LENGTH_LONG).show();
+                                Looper.loop();
+                            }else {
+                                Looper.prepare();
+                                Toast.makeText(RegistActivity.this,"未知错误，请联系管理员",Toast.LENGTH_LONG).show();
                                 Looper.loop();
                             }
 //                        }catch (JSONException e){
