@@ -8,6 +8,9 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.Window;
+import android.webkit.WebSettings;
+import android.webkit.WebView;
+import android.webkit.WebViewClient;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ListView;
@@ -16,15 +19,30 @@ import android.widget.RadioGroup;
 import android.widget.TabHost;
 import android.widget.TextView;
 
+import com.alibaba.fastjson.JSON;
 import com.example.pj19980729.drivingbook.application.AppVariables;
+import com.example.pj19980729.drivingbook.constant.Constants;
+import com.example.pj19980729.drivingbook.emptyactivity.ViewPlayerActivity;
 import com.example.pj19980729.drivingbook.entity.User;
+import com.example.pj19980729.drivingbook.okhttp.RequestUtil;
 import com.example.pj19980729.drivingbook.test.ExamActivity;
 import com.example.pj19980729.drivingbook.test.TestActivity;
 import com.example.pj19980729.drivingbook.test.WrongActivity;
 import com.example.pj19980729.drivingbook.test.specialActivity;
 import com.example.pj19980729.drivingbook.utils.MyAdapter;
+import com.example.pj19980729.drivingbook.utils.ViewPageAdapter;
 
+import org.jetbrains.annotations.NotNull;
+
+import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import okhttp3.Call;
+import okhttp3.Callback;
+import okhttp3.Response;
 
 public class MainActivity extends AppCompatActivity{
 
@@ -50,19 +68,20 @@ public class MainActivity extends AppCompatActivity{
     private Button exit;
 
 
-
+    List<Integer> sids = new ArrayList<>();
+    List<String> listk=new ArrayList<>();
+    ViewPageAdapter adapter;
 
 
     //FirstActivity
     Button test1, exam1, wrong1;
 
-    //SecondActivity
-    ListView lv1;
-    ImageView image1,image2;
-    TextView tv1,tv2;
+    //secondActivity
+    WebView secondwv;
 
 
     //thirdActivity
+    WebView thirdwv;
 
     //ForthActivity
     Button test4, exam4, wrong4;
@@ -120,34 +139,6 @@ public class MainActivity extends AppCompatActivity{
         vpList.add(v4);
 
 
-//        //适配器中
-//        PagerAdapter pagerAdapter = new PagerAdapter() {
-//
-//            //获取当前有多少个界面
-//            @Override
-//            public int getCount() {
-//                return vpList.size();
-//            }
-//
-//            //判断是否由对象生成的界面
-//            @Override
-//            public boolean isViewFromObject(@NonNull View view, @NonNull Object o) {
-//                return view == o;
-//            }
-//
-//            //获取当前界面的位置
-//            @Override
-//            public Object instantiateItem(ViewGroup container, int position) {
-//                container.addView(vpList.get(position));
-//                return vpList.get(position);
-//            }
-//
-//            //销毁上一个界面
-//            @Override
-//            public void destroyItem(@NonNull ViewGroup container, int position, @NonNull Object object) {
-//                container.removeView(vpList.get(position));
-//            }
-//        };
         MyAdapter pagerAdapter = new MyAdapter(vpList);
         vp.setAdapter(pagerAdapter);
         vp.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
@@ -234,10 +225,81 @@ public class MainActivity extends AppCompatActivity{
             }
         });
 
-        //SecondActivity的按钮事件监听
+
+        //secondActivity的按钮事件监听
+        secondwv = v2.findViewById(R.id.secondwv);
+        WebSettings webSettings=secondwv.getSettings();
+        //允许执行javascript脚本
+        webSettings.setJavaScriptEnabled(true);
+        //允许JavaScript可以自动打开Windows
+        webSettings.setJavaScriptCanOpenWindowsAutomatically(true);
+        //设置是否缓存
+        webSettings.setAppCacheEnabled(true);
+        //设置缓存模式
+        webSettings.setCacheMode(webSettings.LOAD_CACHE_ELSE_NETWORK);
+        //设置缓存存放路径
+        //webSettings.setAppCachePath("");
+        //支持缩放（适配到当前屏幕）
+        webSettings.setSupportZoom(true);
+        //调整图片到合适大小
+        webSettings.setUseWideViewPort(true);
+        //调整支持内容的重新布局
+        webSettings.setLayoutAlgorithm(WebSettings.LayoutAlgorithm.SINGLE_COLUMN);
+        //设置可以控制屏幕
+        webSettings.setDisplayZoomControls(true);
+        //设置默认字体大小
+        //webSettings.setDefaultFontSize();
+        //是否开始内容存储
+        webSettings.setDomStorageEnabled(true);
+        webSettings.setLoadWithOverviewMode(true);
+        String htmlStr = String.format("%s/%s/%s", Constants.context,Constants.video,2);
+        secondwv.loadUrl(htmlStr);
+        secondwv.setWebViewClient(new WebViewClient(){
+            @Override
+            public boolean shouldOverrideUrlLoading(WebView view, String url) {
+                view.loadUrl(url);
+                return super.shouldOverrideUrlLoading(view, url);
+            }
+        });
 
 
         //ThirdActivity的按钮事件监听
+        thirdwv = v3.findViewById(R.id.thirdwv);
+        WebSettings webSettings1=thirdwv.getSettings();
+        //允许执行javascript脚本
+        webSettings1.setJavaScriptEnabled(true);
+        //允许JavaScript可以自动打开Windows
+        webSettings1.setJavaScriptCanOpenWindowsAutomatically(true);
+        //设置是否缓存
+        webSettings1.setAppCacheEnabled(true);
+        //设置缓存模式
+        webSettings1.setCacheMode(webSettings.LOAD_CACHE_ELSE_NETWORK);
+        //设置缓存存放路径
+        //webSettings.setAppCachePath("");
+        //支持缩放（适配到当前屏幕）
+        webSettings1.setSupportZoom(true);
+        //调整图片到合适大小
+        webSettings1.setUseWideViewPort(true);
+        //调整支持内容的重新布局
+        webSettings1.setLayoutAlgorithm(WebSettings.LayoutAlgorithm.SINGLE_COLUMN);
+        //设置可以控制屏幕
+        webSettings1.setDisplayZoomControls(true);
+        //设置默认字体大小
+        //webSettings.setDefaultFontSize();
+        //是否开始内容存储
+        webSettings1.setDomStorageEnabled(true);
+        webSettings1.setLoadWithOverviewMode(true);
+        String Str = String.format("%s/%s/%s", Constants.context,Constants.video,3);
+        thirdwv.loadUrl(Str);
+        thirdwv.setWebViewClient(new WebViewClient(){
+            @Override
+            public boolean shouldOverrideUrlLoading(WebView view, String url) {
+                view.loadUrl(url);
+                return super.shouldOverrideUrlLoading(view, url);
+            }
+        });
+
+
 
 
 

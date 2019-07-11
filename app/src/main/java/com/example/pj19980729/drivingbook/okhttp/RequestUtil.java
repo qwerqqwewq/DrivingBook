@@ -36,7 +36,6 @@ public class RequestUtil {
        final String urlx = String.format("%s/%s", Constants.context, url);
        final String data = JSONObject.toJSONString(map);
 
-        Log.i("************************", data);
 
        new Thread(new Runnable() {
            @Override
@@ -49,7 +48,6 @@ public class RequestUtil {
                for (Map.Entry<String, Object> entry : entries) {
                    String key = valueOf(entry.getKey());
                    String value = valueOf(entry.getValue());
-                   Log.d("HttpUtils", "key=="+key+"value=="+value);
                    builder.add(key, value);
                }
                Request request = new Request.Builder()

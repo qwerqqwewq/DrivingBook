@@ -13,7 +13,7 @@
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="212dp"
-        android:text="选择题" />
+        android:text="判断题" />
 
     <Button
         android:id="@+id/button12"
@@ -22,7 +22,7 @@
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="100dp"
-        android:text="填空题" />
+        android:text="选择题" />
 
     <Button
         android:id="@+id/button13"
@@ -31,5 +31,6 @@
         android:layout_below="@+id/button11"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="64dp"
-        android:text="判断题" />
+        android:visibility="visible"
+        android:text="多选题" />
 </RelativeLayout>
