@@ -146,12 +146,11 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void run() {
                 OkHttpClient client = new OkHttpClient();
-                String upwd = MD5Util.MD5Encode(pwd);
                 user.setName(name);
 
                 RequestBody body = new FormBody.Builder()
                         .add("name",name)
-                        .add("pwd",upwd)
+                        .add("pwd",pwd)
                         .build();
                 String url = String.format("%s/%s", Constants.context, "user/login/do");
                 Request request = new Request.Builder()
@@ -178,9 +177,6 @@ public class LoginActivity extends AppCompatActivity {
                                 user.setId(uid);
                                 AppVariables.map.put("user", user);
                                 startActivity(intent);
-                                Looper.prepare();
-                                Toast.makeText(LoginActivity.this,"登录成功",Toast.LENGTH_LONG).show();
-                                Looper.loop();
                             }else if (flag==0){
                                 Looper.prepare();
                                 Toast.makeText(LoginActivity.this,"用户名或密码不正确",Toast.LENGTH_LONG).show();

@@ -3,21 +3,24 @@ package com.example.pj19980729.drivingbook.okhttp;
 import android.util.Log;
 
 import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONObject;
 import com.example.pj19980729.drivingbook.constant.Constants;
 
-import org.jetbrains.annotations.NotNull;
-
 import java.io.IOException;
-import java.util.Iterator;
 import java.util.Map;
+import java.util.Objects;
+import java.util.Set;
 
 import okhttp3.Call;
 import okhttp3.Callback;
+import okhttp3.FormBody;
 import okhttp3.MediaType;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.RequestBody;
 import okhttp3.Response;
+
+import static java.lang.String.valueOf;
 
 public class RequestUtil {
 
@@ -28,22 +31,31 @@ public class RequestUtil {
         doPost(url,map,callback);
     }
 
-    public  void doPost(String url, Map map, final Callback callback) {
+    public  void doPost(String url, final Map map, final Callback callback) {
 
        final String urlx = String.format("%s/%s", Constants.context, url);
-       final String data = JSON.toJSONString(map);
+       final String data = JSONObject.toJSONString(map);
 
+        Log.i("************************", data);
 
        new Thread(new Runnable() {
            @Override
            public void run() {
-               Log.i("=========================doing it==============","");
 
                OkHttpClient client = new OkHttpClient();
-               RequestBody body = RequestBody.create(MediaType.parse("application/json;charset=UTF-8"), data);
+//               RequestBody body = RequestBody.create(MediaType.parse("application/json;charset=UTF-8"), jsonStr);
+               FormBody.Builder builder = new FormBody.Builder();
+               Set<Map.Entry<String, Object>> entries = map.entrySet();
+               for (Map.Entry<String, Object> entry : entries) {
+                   String key = valueOf(entry.getKey());
+                   String value = valueOf(entry.getValue());
+                   Log.d("HttpUtils", "key=="+key+"value=="+value);
+                   builder.add(key, value);
+               }
                Request request = new Request.Builder()
+                       .addHeader("Content-Type","application/x-www-form-urlencoded")//添加头部
                        .url(urlx)
-                       .post(body)
+                       .post(builder.build())
                        .build();
                Call call = client.newCall(request);
                call.enqueue(callback);

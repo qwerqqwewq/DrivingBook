@@ -7,6 +7,7 @@ import android.webkit.WebView;
 
 import com.alibaba.fastjson.JSON;
 import com.example.pj19980729.drivingbook.R;
+import com.example.pj19980729.drivingbook.constant.Constants;
 import com.example.pj19980729.drivingbook.okhttp.RequestUtil;
 import com.example.pj19980729.drivingbook.utils.ViewPageAdapter;
 
@@ -28,6 +29,7 @@ public class ExamActivity extends AppCompatActivity {
 //    WebView question1;
     ViewPager examvp;
     List<String> listk=new ArrayList<>();
+    ViewPageAdapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,10 +41,15 @@ public class ExamActivity extends AppCompatActivity {
         getQuestionIds();
 
 
-        listk.add("https//m.baidu.com");
-        listk.add("https://www.csdn.net/");
+        String urlx = String.format("%s/%s", Constants.context,Constants.quiz);
+        for (int i=0;i<qids.size();i++){
+            String qurl=String.format("%s/%s?num=%s",urlx,qids.get(i),i+1);
+            listk.add(qurl);
+        }
 
-        ViewPageAdapter adapter =new ViewPageAdapter(this,listk);
+
+
+        adapter =new ViewPageAdapter(this,listk);
         examvp.setAdapter(adapter);
 
 
@@ -62,7 +69,7 @@ public class ExamActivity extends AppCompatActivity {
         map.put("num",30);
 
         RequestUtil requestUtil = new RequestUtil();
-        requestUtil.doPost("question/getIds/", map, new Callback() {
+        requestUtil.doPost("question/getIds", map, new Callback() {
             @Override
             public void onFailure(@NotNull Call call, @NotNull IOException e) {
             }
@@ -72,6 +79,13 @@ public class ExamActivity extends AppCompatActivity {
                 String data= response.body().string();
                 Map map1 = (Map) JSON.parse(data);
                 qids = (List<Integer>) map1.get("qids");
+                String urlx = String.format("%s/%s", Constants.context,Constants.quiz);
+                for (int i=0;i<qids.size();i++){
+                    int k= i+1;
+                    String qurl=String.format("%s/%s?num=%s",urlx,qids.get(i),k);
+                    listk.add(qurl);
+                }
+                adapter.notifyDataSetChanged();
             }
         });
 
