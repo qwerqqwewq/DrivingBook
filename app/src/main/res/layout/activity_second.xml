@@ -14,6 +14,7 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="0dp"
         android:text="教学视频"
+        android:background="@drawable/bg_edittext_selector1"
         android:textSize="40sp" />
 
     <WebView

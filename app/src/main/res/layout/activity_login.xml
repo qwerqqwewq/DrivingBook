@@ -5,17 +5,18 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".sign.LoginActivity"
-    android:background="@drawable/backg1">
+    android:background="@drawable/backg5">
 
     <TextView
         android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="29dp"
-        android:text="登录界面"
-        android:textSize="30dp"/>
+        android:layout_marginStart="-9dp"
+        android:layout_marginTop="53dp"
+        android:layout_toEndOf="@+id/textView4"
+        android:text=""
+        android:textSize="30dp" />
 
     <TextView
         android:id="@+id/textView2"
@@ -23,8 +24,9 @@
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
-        android:layout_marginStart="55dp"
-        android:layout_marginTop="147dp"
+        android:layout_marginStart="74dp"
+        android:layout_marginTop="338dp"
+        android:background="@drawable/bg_edittext_selector"
         android:text="用户名"
         android:textSize="20dp" />
 
@@ -34,7 +36,9 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/textView2"
         android:layout_alignEnd="@+id/textView2"
-        android:layout_marginTop="60dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginEnd="5dp"
+        android:background="@drawable/bg_edittext_selector"
         android:text="密码"
         android:textSize="20dp" />
 
@@ -44,8 +48,8 @@
         android:layout_height="wrap_content"
         android:layout_alignStart="@+id/textView"
         android:layout_alignBottom="@+id/textView2"
-        android:layout_marginStart="-2dp"
-        android:layout_marginBottom="-9dp"
+        android:layout_marginStart="14dp"
+        android:layout_marginBottom="-16dp"
         android:ems="10"
         android:hint="请输入用户名"
         android:inputType="textPersonName"
@@ -57,8 +61,8 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/editText3"
         android:layout_alignStart="@+id/textView"
-        android:layout_marginStart="1dp"
-        android:layout_marginTop="53dp"
+        android:layout_marginStart="17dp"
+        android:layout_marginTop="16dp"
         android:ems="10"
         android:hint="请输入密码"
         android:inputType="textPassword" />
@@ -68,11 +72,11 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:layout_marginEnd="0dp"
-        android:layout_marginBottom="91dp"
+        android:layout_marginEnd="-8dp"
+        android:layout_marginBottom="21dp"
         android:layout_toStartOf="@+id/textView"
-        android:onClick="getAsyn"
         android:background="@drawable/buttonbackp"
+        android:onClick="getAsyn"
         android:text="登录" />
 
     <Button
@@ -80,6 +84,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignTop="@+id/button"
+        android:layout_marginStart="107dp"
+        android:layout_marginTop="-3dp"
         android:layout_toEndOf="@+id/textView"
         android:background="@drawable/buttonbackp"
         android:text="退出" />
@@ -90,9 +96,11 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/textView3"
         android:layout_alignEnd="@+id/textView2"
-        android:layout_marginTop="60dp"
+        android:layout_marginTop="28dp"
+        android:layout_marginEnd="-8dp"
+        android:background="@drawable/bg_edittext_selector"
         android:text="验证码"
-        android:textSize="20dp"/>
+        android:textSize="20dp" />
 
     <EditText
         android:id="@+id/editText6"
@@ -100,12 +108,12 @@
         android:layout_height="wrap_content"
         android:layout_alignStart="@+id/textView"
         android:layout_alignBottom="@+id/textView4"
-        android:layout_marginStart="1dp"
-        android:layout_marginBottom="-10dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginBottom="-13dp"
         android:ems="10"
+        android:hint="请输入验证码"
         android:inputType="textPersonName"
-        android:text=""
-        android:hint="请输入验证码"/>
+        android:text="" />
 
     <TextView
         android:id="@+id/textView5"
@@ -113,8 +121,8 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/editText6"
         android:layout_alignStart="@+id/editText4"
-        android:layout_marginStart="0dp"
-        android:layout_marginTop="28dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="12dp"
         android:background="@drawable/backg2"
         android:text="2333"
         android:textSize="20dp" />
@@ -125,8 +133,9 @@
         android:layout_height="wrap_content"
         android:layout_alignEnd="@+id/editText3"
         android:layout_alignParentBottom="true"
-        android:layout_marginBottom="202dp"
+        android:layout_marginEnd="7dp"
+        android:layout_marginBottom="111dp"
         android:text="没有用户名？点此注册"
-        android:textSize="15dp"
-        android:textColor="@android:color/holo_red_dark"/>
+        android:textColor="@android:color/holo_red_dark"
+        android:textSize="15dp" />
 </RelativeLayout>
