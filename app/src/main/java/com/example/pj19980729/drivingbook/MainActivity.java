@@ -5,7 +5,6 @@ import android.app.Fragment;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.Window;
@@ -16,15 +15,12 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TabHost;
 import android.widget.TextView;
-import android.widget.VideoView;
 
 import com.example.pj19980729.drivingbook.application.AppVariables;
-import com.example.pj19980729.drivingbook.entity.Type;
 import com.example.pj19980729.drivingbook.entity.User;
 import com.example.pj19980729.drivingbook.test.ExamActivity;
 import com.example.pj19980729.drivingbook.test.TestActivity;
-import com.example.pj19980729.drivingbook.test.WrongActivity;
-import com.example.pj19980729.drivingbook.utils.ListViewAdapter;
+import com.example.pj19980729.drivingbook.test.specialActivity;
 import com.example.pj19980729.drivingbook.utils.MyAdapter;
 
 import java.util.ArrayList;

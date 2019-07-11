@@ -1,4 +1,4 @@
-package com.example.pj19980729.drivingbook;
+package com.example.pj19980729.drivingbook.test;
 
 import android.content.Intent;
 import android.support.v4.view.ViewPager;
@@ -6,6 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
 import com.alibaba.fastjson.JSON;
+import com.example.pj19980729.drivingbook.R;
 import com.example.pj19980729.drivingbook.okhttp.RequestUtil;
 import com.example.pj19980729.drivingbook.utils.ViewPageAdapter;
 

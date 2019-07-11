@@ -30,8 +30,8 @@
         <activity android:name=".test.ExamActivity" />
         <activity android:name=".test.WrongActivity" />
         <activity android:name=".ViewPlayerActivity" />
-        <activity android:name=".specialActivity" />
-        <activity android:name=".specialtestActivity"></activity>
+        <activity android:name=".test.specialActivity" />
+        <activity android:name=".test.specialtestActivity"></activity>
     </application>
 
 </manifest>
