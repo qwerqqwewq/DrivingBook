@@ -4,6 +4,7 @@ import android.util.Log;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
+import com.example.pj19980729.drivingbook.application.AppVariables;
 import com.example.pj19980729.drivingbook.constant.Constants;
 
 import java.io.IOException;
@@ -52,6 +53,7 @@ public class RequestUtil {
                }
                Request request = new Request.Builder()
                        .addHeader("Content-Type","application/x-www-form-urlencoded")//添加头部
+                       .addHeader("Cookie",AppVariables.cookieStr)
                        .url(urlx)
                        .post(builder.build())
                        .build();

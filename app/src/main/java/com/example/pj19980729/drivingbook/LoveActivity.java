@@ -1,14 +1,22 @@
 package com.example.pj19980729.drivingbook;
 
-import android.support.v4.view.ViewPager;
+import android.content.Intent;
+import android.support.v4.view.PagerAdapter;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
+import android.view.View;
+import android.widget.Adapter;
+import android.widget.AdapterView;
+import android.widget.ListView;
 
 import com.alibaba.fastjson.JSON;
 import com.example.pj19980729.drivingbook.application.AppVariables;
 import com.example.pj19980729.drivingbook.constant.Constants;
+import com.example.pj19980729.drivingbook.entity.QuestionVO;
 import com.example.pj19980729.drivingbook.entity.User;
 import com.example.pj19980729.drivingbook.okhttp.RequestUtil;
+import com.example.pj19980729.drivingbook.utils.ListViewAdapter;
 import com.example.pj19980729.drivingbook.utils.ViewPageAdapter;
 
 import org.jetbrains.annotations.NotNull;
@@ -25,53 +33,81 @@ import okhttp3.Response;
 
 public class LoveActivity extends AppCompatActivity {
 
-    List<Integer> qids = new ArrayList<>();
-    //    WebView question1;
-    ViewPager lovevp;
+    ListView lovelv;
+    List<Integer> list1 = new ArrayList<>();
+    List<String> list2 = new ArrayList<>();
+
     List<String> listk=new ArrayList<>();
 
-    ViewPageAdapter adapter;
+    List<Integer> qids = new ArrayList<>();
+    String qid;
+
+    List<QuestionVO> questionVOList = new ArrayList<>();
+
+    ListViewAdapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_love);
 
-        lovevp = findViewById(R.id.lovevp);
-
         getQuestionIds();
 
 
+        lovelv = findViewById(R.id.lovelv);
+        adapter = new ListViewAdapter(this, list1, list2);
+        lovelv.setAdapter(adapter);
+        lovelv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Intent intent = new Intent();
+                intent.setClass(LoveActivity.this,LoveCommentActivity.class);
+                intent.putExtra("qid", qids.get(position));
+                adapter.notifyDataSetChanged();
+                startActivity(intent);
+            }
+        });
 
-        adapter =new ViewPageAdapter(this,listk);
-        lovevp.setAdapter(adapter);
-        lovevp.setOffscreenPageLimit(qids.size());
     }
 
 
     public void getQuestionIds() {
-        Map map = new HashMap();
-        map.put("uid", ((User)AppVariables.map.get("user")).getId());
+        final Map map = new HashMap();
+        map.put("uid", ((User) AppVariables.map.get("user")).getId());
         RequestUtil requestUtil = new RequestUtil();
-        requestUtil.doPost("fav/find/", map, new Callback() {
+        requestUtil.doPost("fav/find", map, new Callback() {
             @Override
             public void onFailure(@NotNull Call call, @NotNull IOException e) {
             }
 
             @Override
             public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
-                String data= response.body().string();
+                String data = response.body().string();
                 Map map1 = (Map) JSON.parse(data);
-                qids = (List<Integer>) map1.get("qid");
-                String urlx = String.format("%s/%s", Constants.context,Constants.quiz);
-                for (int i=0;i<qids.size();i++){
-                    int k= i+1;
-                    String qurl=String.format("%s/%s?num=%s",urlx,qids.get(i),k);
-                    listk.add(qurl);
+                qids = (List<Integer>) JSON.parse( map1.get("qid").toString());
+
+                for (int i = 0; i < qids.size(); i++) {
+                    getQuestion(qids.get(i));
+                    list1.add(qids.get(i));
+                    list2.add(questionVOList.get(i).getContent());
                 }
-                adapter.notifyDataSetChanged();
             }
         });
+    }
+
+    public void getQuestion(Integer qid){
+
+        RequestUtil requestUtil = new RequestUtil();
+
+        Response response = null;
+        try {
+            response = requestUtil.doPostSy("question/get/" + qid, null);
+            String data = response.body().string();
+            questionVOList.add(JSON.parseObject(data,QuestionVO.class));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
     }
+
 }

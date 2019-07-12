@@ -1,28 +1,46 @@
-package com.example.pj19980729.drivingbook.emptyactivity;
+package com.example.pj19980729.drivingbook;
 
+import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
-import android.webkit.WebViewClient;
 
-import com.example.pj19980729.drivingbook.R;
+import com.alibaba.fastjson.JSON;
+import com.example.pj19980729.drivingbook.application.AppVariables;
 import com.example.pj19980729.drivingbook.constant.Constants;
+import com.example.pj19980729.drivingbook.entity.User;
+import com.example.pj19980729.drivingbook.okhttp.RequestUtil;
+import com.example.pj19980729.drivingbook.utils.ViewPageAdapter;
 
-public class ViewPlayerActivity extends AppCompatActivity {
+import org.jetbrains.annotations.NotNull;
+
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import okhttp3.Call;
+import okhttp3.Callback;
+import okhttp3.Response;
+
+public class LoveCommentActivity extends AppCompatActivity {
 
 
-    WebView video;
+    //    WebView question1;
+    WebView lovewv;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_view_player);
+        setContentView(R.layout.activity_lovecomment);
 
-        int sid = getIntent().getIntExtra("sid",0);
+        lovewv = findViewById(R.id.lovewv);
+        String qid=getIntent().getStringExtra("qid");
 
-        video = findViewById(R.id.video);
-        WebSettings webSettings=video.getSettings();
+        WebSettings webSettings=lovewv.getSettings();
         //允许执行javascript脚本
         webSettings.setJavaScriptEnabled(true);
         //允许JavaScript可以自动打开Windows
@@ -45,14 +63,20 @@ public class ViewPlayerActivity extends AppCompatActivity {
         //webSettings.setDefaultFontSize();
         //是否开始内容存储
         webSettings.setDomStorageEnabled(true);
-        String htmlStr = String.format("%s/%s/%s", Constants.context,Constants.video,sid);
-        video.loadUrl(htmlStr);
-        video.setWebViewClient(new WebViewClient(){
-            @Override
-            public boolean shouldOverrideUrlLoading(WebView view, String url) {
-                view.loadUrl(url);
-                return super.shouldOverrideUrlLoading(view, url);
-            }
-        });
+        webSettings.setLoadWithOverviewMode(true);
+        lovewv.requestFocus();
+
+        String urlx = String.format("%s/%s", Constants.context, Constants.quiz);
+        String qurl = String.format("%s/%s?num=%s&uid=%s", urlx, qid,1,((User)AppVariables.map.get("user")).getId());
+
+        lovewv.loadUrl(qurl);
+
+
+
     }
+
+
+
+
+
 }

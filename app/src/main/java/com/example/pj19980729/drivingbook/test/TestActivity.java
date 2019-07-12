@@ -25,8 +25,10 @@ import com.alibaba.fastjson.JSON;
 import com.example.pj19980729.drivingbook.R;
 import org.jetbrains.annotations.NotNull;
 
+import com.example.pj19980729.drivingbook.application.AppVariables;
 import com.example.pj19980729.drivingbook.constant.Constants;
 import com.example.pj19980729.drivingbook.entity.QuestionVO;
+import com.example.pj19980729.drivingbook.entity.User;
 import com.example.pj19980729.drivingbook.okhttp.RequestUtil;
 import com.example.pj19980729.drivingbook.utils.ListAdapter;
 import com.example.pj19980729.drivingbook.utils.ViewPageAdapter;
@@ -49,7 +51,7 @@ import okhttp3.Response;
 public class TestActivity extends AppCompatActivity {
 
     ViewPager testvp;
-    TextView username, usercomment, replyname, replycomment, selectall;
+    TextView username, usercomment, replyname;
     ListView comment, lvQuestion;
 
     List<Integer> qids = new ArrayList<>();
@@ -81,8 +83,6 @@ public class TestActivity extends AppCompatActivity {
         username = (TextView) findViewById(R.id.textView11);
         usercomment = (TextView) findViewById(R.id.textView13);
         replyname = (TextView) findViewById(R.id.textView17);
-        replycomment = (TextView) findViewById(R.id.textView18);
-        selectall = (TextView) findViewById(R.id.textView19);
 
         question1 = findViewById(R.id.question1);
 
@@ -134,7 +134,7 @@ public class TestActivity extends AppCompatActivity {
                 String urlx = String.format("%s/%s", Constants.context,Constants.quiz);
                 for (int i=0;i<qids.size();i++){
                     int k= i+1;
-                    String qurl=String.format("%s/%s?num=%s",urlx,qids.get(i),k);
+                    String qurl=String.format("%s/%s?num=%s&uid=%s",urlx,qids.get(i),k,((User)AppVariables.map.get("user")).getId());
                     listk.add(qurl);
                 }
                 adapter.notifyDataSetChanged();

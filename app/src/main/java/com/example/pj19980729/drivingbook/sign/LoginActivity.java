@@ -27,12 +27,19 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
+import java.util.concurrent.TimeUnit;
 
 import okhttp3.Call;
 import okhttp3.Callback;
+import okhttp3.Cookie;
+import okhttp3.CookieJar;
 import okhttp3.FormBody;
+import okhttp3.Headers;
+import okhttp3.HttpUrl;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.RequestBody;
@@ -152,11 +159,12 @@ public class LoginActivity extends AppCompatActivity {
                         .add("name",name)
                         .add("pwd",pwd)
                         .build();
-                String url = String.format("%s/%s", Constants.context, "user/login/do");
+                final String url = String.format("%s/%s", Constants.context, "user/login/do");
                 Request request = new Request.Builder()
                         .url(url)
                         .post(body)
                         .build();
+
                 Call call = client.newCall(request);
                 call.enqueue(new Callback() {
                     @Override
@@ -169,8 +177,16 @@ public class LoginActivity extends AppCompatActivity {
                         String str = response.body().string();
                         Map<String,Object> map = com.alibaba.fastjson.JSONObject.parseObject(str,Map.class) ;
                         int flag =(Integer)map.get("status");
-
                             if (flag==1){
+                                //获取session的操作，session放在cookie头，且取出后含有“；”，取出后为下面的 s （也就是jsesseionid）
+                                Headers headers = response.headers();
+                                Log.d("info_headers", "header " + headers);
+                                List<String> cookies = headers.values("Set-Cookie");
+                                String session = cookies.get(0);
+                                Log.d("info_cookies", "onResponse-size: " + cookies);
+
+                                AppVariables.cookieStr = session.substring(0, session.indexOf(";"));
+                                Log.i("info_s", "session is  :" + AppVariables.cookieStr);
                                 Intent intent = new Intent();
                                 intent.setClass(LoginActivity.this,MainActivity.class);
                                 Integer uid = (Integer) map.get("uid");

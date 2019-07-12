@@ -10,13 +10,18 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewParent;
+import android.webkit.CookieManager;
+import android.webkit.CookieSyncManager;
 import android.webkit.SslErrorHandler;
+import android.webkit.ValueCallback;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.ListView;
 
 import com.example.pj19980729.drivingbook.R;
+import com.example.pj19980729.drivingbook.application.AppVariables;
+import com.example.pj19980729.drivingbook.constant.Constants;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -51,12 +56,11 @@ public class ViewPageAdapter extends PagerAdapter {
     @Override
     public Object instantiateItem(@NonNull ViewGroup container, int position) {
 
-
-
         LayoutInflater inflater =LayoutInflater.from(context);
-        view = inflater.inflate(R.layout.question,null,false);
+        view = inflater.inflate(R.layout.question,null);
         question = view.findViewById(R.id.question1);
 
+        question.requestFocus();
         WebSettings webSettings=question.getSettings();
         //允许执行javascript脚本
         webSettings.setJavaScriptEnabled(true);
@@ -73,17 +77,16 @@ public class ViewPageAdapter extends PagerAdapter {
         //调整图片到合适大小
         webSettings.setUseWideViewPort(true);
         //调整支持内容的重新布局
-        webSettings.setLayoutAlgorithm(WebSettings.LayoutAlgorithm.SINGLE_COLUMN);
+//        webSettings.setLayoutAlgorithm(WebSettings.LayoutAlgorithm.SINGLE_COLUMN);
         //设置可以控制屏幕
         webSettings.setDisplayZoomControls(true);
         //设置默认字体大小
         //webSettings.setDefaultFontSize();
         //是否开始内容存储
         webSettings.setDomStorageEnabled(true);
-        webSettings.setLoadWithOverviewMode(true);
-        question.requestFocus();
+
         String htmlStr = list.get(position);
-        question.loadUrl(htmlStr);
+
         question.setWebViewClient(new WebViewClient(){
             @Override
             public boolean shouldOverrideUrlLoading(WebView view, String url) {
@@ -91,6 +94,9 @@ public class ViewPageAdapter extends PagerAdapter {
                 return super.shouldOverrideUrlLoading(view, url);
             }
         });
+
+        question.loadUrl(htmlStr);
+
 
         viewList.add(question);
 
@@ -113,4 +119,16 @@ public class ViewPageAdapter extends PagerAdapter {
 //        super.destroyItem(container, position, object);
         container.removeView(viewList.get(position));
     }
+
+    public static void synCookies(Context context, String url) {
+        CookieSyncManager.createInstance(context);
+        CookieManager cookieManager = CookieManager.getInstance();
+        cookieManager.setAcceptCookie(true);
+        cookieManager.removeSessionCookie();// 移除
+        cookieManager.setCookie(url , AppVariables.cookieStr);
+        CookieSyncManager.getInstance().sync();
+    }
+
+
+
 }

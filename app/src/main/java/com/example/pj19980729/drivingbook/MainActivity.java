@@ -12,19 +12,14 @@ import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.Button;
-import android.widget.ImageView;
-import android.widget.ListView;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TabHost;
 import android.widget.TextView;
 
-import com.alibaba.fastjson.JSON;
 import com.example.pj19980729.drivingbook.application.AppVariables;
 import com.example.pj19980729.drivingbook.constant.Constants;
-import com.example.pj19980729.drivingbook.emptyactivity.ViewPlayerActivity;
 import com.example.pj19980729.drivingbook.entity.User;
-import com.example.pj19980729.drivingbook.okhttp.RequestUtil;
 import com.example.pj19980729.drivingbook.test.ExamActivity;
 import com.example.pj19980729.drivingbook.test.TestActivity;
 import com.example.pj19980729.drivingbook.test.WrongActivity;
@@ -32,17 +27,8 @@ import com.example.pj19980729.drivingbook.test.specialActivity;
 import com.example.pj19980729.drivingbook.utils.MyAdapter;
 import com.example.pj19980729.drivingbook.utils.ViewPageAdapter;
 
-import org.jetbrains.annotations.NotNull;
-
-import java.io.IOException;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
-
-import okhttp3.Call;
-import okhttp3.Callback;
-import okhttp3.Response;
 
 public class MainActivity extends AppCompatActivity{
 
