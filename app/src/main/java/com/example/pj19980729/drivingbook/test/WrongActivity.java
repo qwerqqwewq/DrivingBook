@@ -76,7 +76,7 @@ public class WrongActivity extends AppCompatActivity {
                 String urlx = String.format("%s/%s", Constants.context,Constants.quiz);
                 for (int i=0;i<qids.size();i++){
                     int k= i+1;
-                    String qurl=String.format("%s/%s?num=%s",urlx,qids.get(i),k);
+                    String qurl=String.format("%s/%s?num=%s&uid=%s",urlx,qids.get(i),k,((User)AppVariables.map.get("user")).getId());
                     listk.add(qurl);
                 }
                 adapter.notifyDataSetChanged();

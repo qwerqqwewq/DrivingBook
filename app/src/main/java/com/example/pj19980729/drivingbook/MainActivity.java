@@ -331,7 +331,12 @@ public class MainActivity extends AppCompatActivity{
         textView15 = (TextView) findViewById(R.id.textView15);
         textView16 = (TextView) findViewById(R.id.textView16);
         exit = (Button) findViewById(R.id.button10);
-        textView14.setText(((User)AppVariables.map.get("user")).getName());
+        if (AppVariables.map.get("user") != null) {
+            textView14.setText(((User) AppVariables.map.get("user")).getName());
+        } else {
+            textView14.setText("亲，你还没登录哦");
+        }
+
 
 
         textView15.setOnClickListener(new View.OnClickListener() {
