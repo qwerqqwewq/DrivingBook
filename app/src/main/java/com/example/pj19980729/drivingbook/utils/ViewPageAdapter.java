@@ -12,8 +12,10 @@ import android.view.ViewGroup;
 import android.view.ViewParent;
 import android.webkit.CookieManager;
 import android.webkit.CookieSyncManager;
+import android.webkit.JsResult;
 import android.webkit.SslErrorHandler;
 import android.webkit.ValueCallback;
+import android.webkit.WebChromeClient;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
@@ -69,13 +71,13 @@ public class ViewPageAdapter extends PagerAdapter {
         //设置是否缓存
         webSettings.setAppCacheEnabled(true);
         //设置缓存模式
-        webSettings.setCacheMode(webSettings.LOAD_CACHE_ELSE_NETWORK);
+//        webSettings.setCacheMode(webSettings.LOAD_CACHE_ELSE_NETWORK);
         //设置缓存存放路径
         //webSettings.setAppCachePath("");
-        //支持缩放（适配到当前屏幕）
-        webSettings.setSupportZoom(true);
-        //调整图片到合适大小
-        webSettings.setUseWideViewPort(true);
+//        //支持缩放（适配到当前屏幕）
+//        webSettings.setSupportZoom(true);
+//        //调整图片到合适大小
+//        webSettings.setUseWideViewPort(true);
         //调整支持内容的重新布局
 //        webSettings.setLayoutAlgorithm(WebSettings.LayoutAlgorithm.SINGLE_COLUMN);
         //设置可以控制屏幕
@@ -92,6 +94,13 @@ public class ViewPageAdapter extends PagerAdapter {
             public boolean shouldOverrideUrlLoading(WebView view, String url) {
                 view.loadUrl(url);
                 return super.shouldOverrideUrlLoading(view, url);
+            }
+        });
+
+        question.setWebChromeClient(new WebChromeClient(){
+            @Override
+            public boolean onJsAlert(WebView view, String url, String message, JsResult result) {
+                return super.onJsAlert(view, url, message, result);
             }
         });
 

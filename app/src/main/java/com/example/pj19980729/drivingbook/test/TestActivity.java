@@ -87,7 +87,6 @@ public class TestActivity extends AppCompatActivity {
         question1 = findViewById(R.id.question1);
 
 
-
 //        testAdapter= new ViewPageAdapter(this,pageList);
 //        testvp.setAdapter(testAdapter);
 

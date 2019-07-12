@@ -9,6 +9,7 @@ import android.view.View;
 import android.widget.Adapter;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.SimpleAdapter;
 
 import com.alibaba.fastjson.JSON;
 import com.example.pj19980729.drivingbook.application.AppVariables;
@@ -52,11 +53,10 @@ public class LoveActivity extends AppCompatActivity {
         setContentView(R.layout.activity_love);
 
         getQuestionIds();
-
+        Map<String, Object> map = null;
 
         lovelv = findViewById(R.id.lovelv);
         adapter = new ListViewAdapter(this, list1, list2);
-        lovelv.setAdapter(adapter);
         lovelv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
